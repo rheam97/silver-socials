@@ -1,0 +1,1 @@
+// group name and  description, number of members, posts, join button

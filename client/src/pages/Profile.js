@@ -1,0 +1,1 @@
+// should include list of groups, maybe profile picture, otherwise name and posts maybe in addtion to groups
