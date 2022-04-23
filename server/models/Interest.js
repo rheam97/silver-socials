@@ -1,0 +1,1 @@
+//  contains name and array of groups
