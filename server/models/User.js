@@ -25,11 +25,11 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'Post'
       }
-    ], // groups array? 
-    friends: [
+    ], 
+    groups: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Group'
       }
     ]
   },
@@ -55,8 +55,8 @@ userSchema.methods.isCorrectPassword = async function(password) {
   return bcrypt.compare(password, this.password);
 };
 
-userSchema.virtual('friendCount').get(function() {
-  return this.friends.length;
+userSchema.virtual('groupCount').get(function() {
+  return this.groups.length;
 });
 
 const User = model('User', userSchema);
