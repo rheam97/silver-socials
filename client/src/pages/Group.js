@@ -3,8 +3,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import ReactionList from "../components/ReactionList";
-import ReactionForm from "../components/ReactionForm";
+import PostList from "../components/Post";
+import Interest from "../components/InterestGroupList";
+import GroupForm from "../components/GroupForm";
 
 import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";

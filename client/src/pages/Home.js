@@ -2,9 +2,9 @@
 // button to make a group?
 
 import React from "react";
-import SocialGroup from "../components/SocialGroup";
+import SocialGroup from "../components/InterestGroupList";
 import GroupForm from "../components/GroupForm";
-import FriendList from "../components/FriendList";
+import PersonalList from "../components/PersonalGroupList";
 
 import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
@@ -34,10 +34,9 @@ const Home = () => {
         </div>
         {loggedIn && userData ? (
           <div className="col-12 col-lg-3 mb-3">
-            <FriendList
+            <PersonalList
               username={userData.me.username}
-              friendCount={userData.me.friendCount}
-              friends={userData.me.friends}
+              posts={userData.me.posts}
             />
           </div>
         ) : null}
