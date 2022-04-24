@@ -1,4 +1,4 @@
-const {Thought, User} = require('../models')
+const {Post, Interest, Group, User} = require('../models')
 const { AuthenticationError } = require('apollo-server-express')
 const {signToken, authMiddleware} =require('../utils/auth')
 const resolvers = {

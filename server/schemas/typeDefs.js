@@ -29,6 +29,7 @@ type Interest {
 type Query {
     me: User
     user(username: String!): User
+    users: [User]
     groups(username: String): [User]
     group(_id: ID!): Group
 }
