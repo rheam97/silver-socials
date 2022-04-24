@@ -13,7 +13,7 @@ type User {
     _id: ID
     username: String
     email: String
-    posts: []
+    posts: [Post]
     groups: [Group]
   }
 type Post {
@@ -23,7 +23,6 @@ type Post {
     username: String
 }
 type Interest {
-    _id: ID
     name: String
     groups: [Group]
 }
@@ -38,6 +37,7 @@ type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addGroup(name: String!): Group
     addPost(groupId: ID!, userId: ID!): Post
+    removePost(postId: ID!): Group
 }
 type Auth {
     token: ID!
