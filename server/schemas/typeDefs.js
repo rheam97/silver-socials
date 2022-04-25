@@ -9,6 +9,10 @@ type Group {
     members: [User]
     posts: [Post]
 }
+input addThisGroup {
+    name: String!
+    description: String!
+}
 type User {
     _id: ID
     username: String
@@ -27,18 +31,18 @@ type Interest {
     groups: [Group]
 }
 type Query {
+    interest (name: String!): Interest
     interests: [Interest]
-    interest (name: name!): Interest
     me: User
     user(username: String!): User
     users: [User]
-    groups(username: String): [User] 
+    groups(username: String!): User
     group(_id: ID!): Group
 }
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addGroup(name: String!): Interest
+    addGroup(input: addThisGroup): Interest
     addPost(postText: String!): Post
     removePost(postId: ID!): Group
 }
