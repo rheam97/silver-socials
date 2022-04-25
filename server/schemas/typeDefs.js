@@ -2,41 +2,45 @@ const {gql} = require('apollo-server-express')
 
 
 const typeDefs = gql `
-type Thought {
+type Group {
     _id: ID
-    thoughtText: String
-    createdAt: String
-    username: String
-    reactionCount: Int
-    reactions: [Reaction]
+    name: String
+    description: String
+    members: [User]
+    posts: [Post]
 }
-type Reaction {
-    _id: ID
-    reactionBody: String
-    createdAt: String
-    username: String
-  }
 type User {
     _id: ID
     username: String
     email: String
-    friendCount: Int
-    thoughts: [Thought]
-    friends: [User]
+    posts: [Post]
+    groups: [Group]
+  }
+type Post {
+    _id: ID
+    postText: String
+    createdAt: String
+    username: String
+}
+type Interest {
+    name: String
+    groups: [Group]
 }
 type Query {
+    interests: [Interest]
+    interest (name: name!): Interest
     me: User
-    users: [User]
     user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(_id: ID!): Thought
+    users: [User]
+    groups(username: String): [User] 
+    group(_id: ID!): Group
 }
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addThought(thoughtText: String!): Thought
-    addReaction(thoughtId: ID!, reactionBody: String!): Thought
-    addFriend(friendId: ID!): User
+    addGroup(name: String!): Interest
+    addPost(postText: String!): Post
+    removePost(postId: ID!): Group
 }
 type Auth {
     token: ID!
@@ -44,3 +48,11 @@ type Auth {
 }`
 
 module.exports= typeDefs
+// *** should remove post contain two returned objects
+// comments to explain queries
+// pull all groups associated with user for their profile
+// groups(username: String): [User]
+// look at data for a specific group
+// group(_id: ID!): Group
+
+// mutations neeed to be able to delete post

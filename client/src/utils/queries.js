@@ -1,3 +1,4 @@
+
 import { gql } from "@apollo/client";
 
 export const QUERY_GROUPS = gql`
@@ -17,6 +18,7 @@ export const QUERY_GROUPS = gql`
     }
   }
 `;
+
 
 export const QUERY_GROUP = gql`
   query group($id: ID!) {
@@ -98,3 +100,4 @@ export const QUERY_ME_BASIC = gql`
     }
   }
 `;
+
