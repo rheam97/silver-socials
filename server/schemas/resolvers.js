@@ -116,6 +116,25 @@ const resolvers = {
       
             throw new AuthenticationError('You need to be logged in!');
           },
+          // join group: user to group
+          joinGroup: async (parent, {groupId, username}, context) => {
+            if (context.user) {
+              const updatedGroup = await Group.findOneAndUpdate(
+                { _id: groupId },
+                { $push: { members: { username } } },
+                { new: true }
+              );
+              await User.findOneandUpdate(
+                  {username: username},
+                  {$push: {groups: {_id: groupId}}},
+                  { new: true}
+              )
+      
+              return updatedGroup;
+            }
+      
+            throw new AuthenticationError('You need to be logged in!');
+          },
         // addFriend: async(parent, {friendId}, context)=> {
         // if(context.user){
         //     const updatedUser = await User.findOneAndUpdate(

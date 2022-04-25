@@ -45,6 +45,7 @@ type Mutation {
     addGroup(input: addThisGroup): Interest
     addPost(postText: String!): Post
     removePost(postId: ID!): Group
+    joinGroup(username: String!): Group
 }
 type Auth {
     token: ID!
