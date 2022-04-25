@@ -105,13 +105,14 @@ const resolvers = {
         },
         addGroup: async (parent, {name, input}, context) => {
             if (context.user) {
-              const updatedInterest = await Interest.findOneAndUpdate(
-                { name: name },
-                { $push: { groups: { input } } },
-                { new: true, runValidators: true }
-              );
+            const group = await Group.create(input)
+            //   await Interest.findOneAndUpdate(
+            //     { name: name },
+            //     { $push: { groups: { input } } },
+            //     { new: true, runValidators: true }
+            //   );
       
-              return updatedInterest;
+              return group;
             }
       
             throw new AuthenticationError('You need to be logged in!');

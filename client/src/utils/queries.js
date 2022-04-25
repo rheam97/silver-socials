@@ -2,21 +2,15 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_GROUPS = gql`
-  query groups($username: String) {
-    groups(username: $username) {
-      _id
-      groupText
-      createdAt
-      username
-      reactionCount
-      reactions {
-        _id
-        createdAt
-        username
-        reactionBody
-      }
+query groups($username: String) {
+  groups(username: $username) {
+    groups {
+     _id
+    name
+    description
     }
   }
+}
 `;
 
 

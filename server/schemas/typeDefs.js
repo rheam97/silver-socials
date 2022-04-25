@@ -42,7 +42,7 @@ type Query {
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addGroup(input: addThisGroup): Interest
+    addGroup(input: addThisGroup): Group
     addPost(postText: String!): Post
     removePost(postId: ID!): Group
     joinGroup(username: String!): Group
@@ -59,5 +59,19 @@ module.exports= typeDefs
 // groups(username: String): [User]
 // look at data for a specific group
 // group(_id: ID!): Group
+// pull all posts within a group
+
 
 // mutations neeed to be able to delete post
+
+// removed from query because causing errors
+// can add back in
+// interest (name: name!): Interest
+
+// for a query, the inside of the parentheses is the query parameter
+// type Query {
+//   thoughts(username: String): [Thought]}
+
+// With this, we've now defined our thoughts query that it could receive a parameter if we wanted. 
+// In this case, the parameter would be identified as username and would have a String data type.
+
