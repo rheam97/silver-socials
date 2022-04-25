@@ -28,7 +28,6 @@ type Interest {
 }
 type Query {
     interests: [Interest]
-    interest (name: name!): Interest
     me: User
     user(username: String!): User
     users: [User]
@@ -54,5 +53,19 @@ module.exports= typeDefs
 // groups(username: String): [User]
 // look at data for a specific group
 // group(_id: ID!): Group
+// pull all posts within a group
+
 
 // mutations neeed to be able to delete post
+
+// removed from query because causing errors
+// can add back in
+// interest (name: name!): Interest
+
+// for a query, the inside of the parentheses is the query parameter
+// type Query {
+//   thoughts(username: String): [Thought]}
+
+// With this, we've now defined our thoughts query that it could receive a parameter if we wanted. 
+// In this case, the parameter would be identified as username and would have a String data type.
+
