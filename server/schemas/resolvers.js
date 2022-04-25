@@ -28,11 +28,11 @@ const resolvers = {
         interests: async ()=> {
             return await Interest.find()
         },
-        // interest: async (parent, {name}, context)=> {
-        //     return await Interest.findBy(name)
-        // },
+        interest: async (parent, {name}, context)=> {
+            return await Interest.findOne(name).populate('groups')
+        },
         group: async(parent, {_id})=> {
-            return Group.findOne({_id})
+            return Group.findById(_id)
             .populate('members')
             .populate('posts')
         },
@@ -43,8 +43,8 @@ const resolvers = {
             .populate('posts')
             .populate('groups')
         },
-        user: async (parent, {username})=> {
-            return User.findOne({username})
+        user: async (parent, {username}, context)=> {
+            return User.findOne(username)
             .select('-__v -password')
             .populate('friends')
             .populate('posts')
@@ -69,32 +69,53 @@ const resolvers = {
             const token = signToken(user)
             return {token, user}
         },
-        // addThought: async(parent, args, context)=> {
-        //     if(context.user){
-        //         const thought = await Thought.create({...args, username: context.user.username})
+        addPost: async(parent, args, context)=> {
+            if(context.user){
+                const post = await Post.create({...args, username: context.user.username})
 
-        //         await User.findByIdAndUpdate(
-        //             {_id: context.user._id},
-        //             {$push: {thoughts: thought._id}},
-        //             {new: true}
-        //         )
-        //         return thought
-        //     }
-        //     throw new AuthenticationError('You need to be logged in.')
-        // },
-        // addReaction: async (parent, { thoughtId, reactionBody }, context) => {
-        //     if (context.user) {
-        //       const updatedThought = await Thought.findOneAndUpdate(
-        //         { _id: thoughtId },
-        //         { $push: { reactions: { reactionBody, username: context.user.username } } },
-        //         { new: true, runValidators: true }
-        //       );
+                await User.findByIdAndUpdate(
+                    {_id: context.user._id},
+                    {$push: {posts: args._id}},
+                    {new: true}
+                )
+                await Group.findByIdAndUpdate(
+                    {_id: group._id},
+                    {$addToSet: {posts: args._id}},
+                    {new: true}
+                )
+                return post
+            }
+            throw new AuthenticationError('You need to be logged in.')
+        },
+        removePost: async(parent, {groupId, postId}, context)=> {
+            if(context.user){
+                const updatedGroup = await Group.findByIdAndUpdate(
+                    {_id: groupId},
+                    {$pull: {posts: postId}},
+                    {new: true}
+                )
+                await User.findByIdAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {posts: postId}},
+                    {new: true}
+                )
+                return updatedGroup
+            }
+            throw new AuthenticationError('You need to be logged in.')
+        },
+        addGroup: async (parent, {name, input}, context) => {
+            if (context.user) {
+              const updatedInterest = await Interest.findOneAndUpdate(
+                { name: name },
+                { $push: { groups: { input } } },
+                { new: true, runValidators: true }
+              );
       
-        //       return updatedThought;
-        //     }
+              return updatedInterest;
+            }
       
-        //     throw new AuthenticationError('You need to be logged in!');
-        //   },
+            throw new AuthenticationError('You need to be logged in!');
+          },
         // addFriend: async(parent, {friendId}, context)=> {
         // if(context.user){
         //     const updatedUser = await User.findOneAndUpdate(
@@ -103,10 +124,10 @@ const resolvers = {
         //         {new: true},
         //     ).populate('friends')
         //     return updatedUser
-        // }
+        // // }
         // throw new AuthenticationError('You need to be logged in.')
         // }
-    
+        
     }
 }
 
