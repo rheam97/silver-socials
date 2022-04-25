@@ -27,17 +27,19 @@ type Interest {
     groups: [Group]
 }
 type Query {
+    interests: [Interest]
+    interest (name: name!): Interest
     me: User
     user(username: String!): User
     users: [User]
-    groups(username: String): [User]
+    groups(username: String): [User] 
     group(_id: ID!): Group
 }
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addGroup(name: String!): Group
-    addPost(groupId: ID!, userId: ID!): Post
+    addGroup(name: String!): Interest
+    addPost(postText: String!): Post
     removePost(postId: ID!): Group
 }
 type Auth {
@@ -46,7 +48,7 @@ type Auth {
 }`
 
 module.exports= typeDefs
-
+// *** should remove post contain two returned objects
 // comments to explain queries
 // pull all groups associated with user for their profile
 // groups(username: String): [User]

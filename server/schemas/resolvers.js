@@ -2,12 +2,22 @@ const {Post, Interest, Group, User} = require('../models')
 const { AuthenticationError } = require('apollo-server-express')
 const {signToken, authMiddleware} =require('../utils/auth')
 const resolvers = {
+    // get me profile with groups 
+    //get groups under interest
+    // get interests
+    // get group details with members and posts
+    // get other user details
+    // add user
+    // login
+    // add group
+    // add post remove post
     Query: {
         me: async(parent, args, context)=> {
             if(context.user){
                 const userData = await User.findOne({_id: context.user._id})
                 .select('-__v -password')
-                .populate('thoughts')
+                .populate('groups')
+                .populate('posts')
                 .populate('friends')
     
                 return userData
@@ -15,24 +25,30 @@ const resolvers = {
             throw new AuthenticationError('Not logged in.')
        
         },
-        thoughts: async(parent, {username})=> {
-            const params = username ? {username} : {}
-            return Thought.find(params).sort({createdAt: -1})
+        interests: async ()=> {
+            return await Interest.find()
         },
-        thought: async(parent, {_id})=> {
-            return Thought.findOne({_id})
+        interest: async (parent, {name}, context)=> {
+            return await Interest.findBy(name)
+        },
+        group: async(parent, {_id})=> {
+            return Group.findOne({_id})
+            .populate('members')
+            .populate('posts')
         },
         users: async()=> {
             return User.find()
             .select('-__v -password')
             .populate('friends')
-            .populate('thoughts')
+            .populate('posts')
+            .populate('groups')
         },
         user: async (parent, {username})=> {
             return User.findOne({username})
             .select('-__v -password')
             .populate('friends')
-            .populate('thoughts')
+            .populate('posts')
+            .populate('groups')
         }
     },
     Mutation: {
