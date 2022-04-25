@@ -2,7 +2,7 @@
 // button to make a group?
 
 import React from "react";
-import SocialGroup from "../components/InterestGroupList";
+import SocialGroup from "../components/InterestMenu";
 import GroupForm from "../components/GroupForm";
 import PersonalList from "../components/PersonalGroupList";
 

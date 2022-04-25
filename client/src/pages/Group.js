@@ -4,7 +4,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import PostList from "../components/Post";
-import Interest from "../components/InterestGroupList";
+import Interest from "../components/InterestMenu";
 import GroupForm from "../components/GroupForm";
 
 import Auth from "../utils/auth";
@@ -38,7 +38,7 @@ const SingleGroup = (props) => {
         </div>
       </div>
 
-      {group.reactionCount > 0 && <PostList reactions={group.reactions} />}
+      {<PostList posts={group.posts} />}
 
       {Auth.loggedIn() && <GroupForm groupId={group._id} />}
     </div>

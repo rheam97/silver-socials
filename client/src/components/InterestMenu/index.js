@@ -3,7 +3,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const InterestGroup = ({ groups, title }) => {
+const InterestList = ({ groups, title }) => {
   if (!groups.length) {
     return <h3>No Groups Yet</h3>;
   }
@@ -39,4 +39,4 @@ const InterestGroup = ({ groups, title }) => {
   );
 };
 
-export default InterestGroup;
+export default InterestList;

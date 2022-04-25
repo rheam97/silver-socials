@@ -4,7 +4,7 @@ import React from "react";
 import { Redirect, useParams } from "react-router-dom";
 
 import GroupForm from "../components/GroupForm";
-import SocialGroup from "../components/InterestGroupList";
+import SocialGroup from "../components/InterestMenu";
 import PersonalList from "../components/PersonalGroupList";
 import Posts from "../components/Post";
 
@@ -74,10 +74,9 @@ const Profile = (props) => {
         </div>
 
         <div className="col-12 col-lg-3 mb-3">
-          <FriendList
+          <PersonalList
             username={user.username}
-            friendCount={user.friendCount}
-            friends={user.friends}
+            posts={user.posts}
           />
         </div>
       </div>
