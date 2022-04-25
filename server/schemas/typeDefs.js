@@ -42,7 +42,7 @@ type Query {
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addGroup(input: addThisGroup): Interest
+    addGroup(input: addThisGroup): Group
     addPost(postText: String!): Post
     removePost(postId: ID!): Group
 }
