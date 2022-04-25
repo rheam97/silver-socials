@@ -25,16 +25,11 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_GROUP = gql`
-  mutation addGroup($thoughtText: String!) {
-    addThou(thoughtText: $thoughtText) {
+  mutation addGroup($input: addThisGroup) {
+    addGroup(input: $input) {
       _id
-      thoughtText
-      createdAt
-      username
-      postCount
-      posts {
-        _id
-      }
+      name
+      description
     }
   }
 `;
