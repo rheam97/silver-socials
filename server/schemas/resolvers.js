@@ -27,6 +27,7 @@ const resolvers = {
         },
         interests: async ()=> {
             return await Interest.find()
+            .populate('groups')
         },
         interest: async (parent, {name}, context)=> {
             return await Interest.findOne(name).populate('groups')
@@ -117,13 +118,13 @@ const resolvers = {
         addGroup: async (parent, {name, input}, context) => {
             if (context.user) {
             const group = await Group.create(input)
-            //   await Interest.findOneAndUpdate(
-            //     { name: name },
-            //     { $push: { groups: { input } } },
-            //     { new: true, runValidators: true }
-            //   ).populate('groups');
+              const updatedInterest = await Interest.findOneAndUpdate(
+                { name: name },
+                { $push: { groups:  {_id: group._id } }},
+                { new: true, runValidators: true }
+              ).populate('groups');
       
-              return group;
+              return updatedInterest;
             }
       
             throw new AuthenticationError('You need to be logged in!');

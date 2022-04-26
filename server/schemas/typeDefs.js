@@ -53,7 +53,7 @@ type joinGroupResponse {
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addGroup(input: addThisGroup): Group
+    addGroup(input: addThisGroup, name: String!): Interest
     addPost(postText: String!, groupId: ID!): AddPostResponse
     removePost(postId: ID!): AddPostResponse
     joinGroup(groupId: ID!): joinGroupResponse
