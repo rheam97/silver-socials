@@ -10,6 +10,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_GROUPS } from "../../utils/queries";
 // import { idbPromise } from "../../utils/helpers";
 import spinner from "../../assets/spinner.gif";
+ 
 
 function GroupList() {
   //const [state, dispatch] = useStoreContext();
