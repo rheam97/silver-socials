@@ -22,9 +22,10 @@ const Home = () => {
     <main>
       <div className="flex-row justify-space-between">
         <div className="col-12 mb-3">
-          <InterestMenu />
+          <InterestMenu /> 
         </div>
-        {/* {loggedIn && (
+        {/* maybe render groups under interests here when clicked???
+         {loggedIn && (
           <div className="col-12 mb-3">
             <GroupForm />
           </div>

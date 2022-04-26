@@ -1,87 +1,103 @@
 
 import { gql } from "@apollo/client";
 
-export const QUERY_GROUPS = gql`
-query groups($username: String) {
-  groups(username: $username) {
-    groups {
-     _id
+export const QUERY_INTERESTS = gql`
+  interests {
     name
-    description
+    groups {
+      _id
+      name
+      description
     }
   }
-}
-`;
+`
+export const QUERY_INTEREST = gql`
+  query getInterest(name: $name) {
+    name
+    groups {
+      _id
+      name
+      description
+    }
+  }
+`
+// export const QUERY_GROUPS = gql`
+// query groups($username: String) {
+//   groups(username: $username) {
+//     groups {
+//      _id
+//     name
+//     description
+//     }
+//   }
+// }
+// `;
 
 
 export const QUERY_GROUP = gql`
-  query group($id: ID!) {
-    group(_id: $id) {
+ query getGroup(_id: $id) {
+    _id
+    name
+    description
+    members {
       _id
-      groupText
-      createdAt
       username
-      reactionCount
-      reactions {
+      posts {
         _id
+        postText
         createdAt
         username
-        reactionBody
       }
+    }
+    posts {
+      _id
+      postText
+      createdAt
+      username
     }
   }
 `;
 
 export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
+  query getUser(username: $username) {
+    _id
+    username
+    email
+    groups {
       _id
+      name
+      description
+    }
+    posts {
+      _id
+      postText
+      createdAt
       username
-      email
-      friendCount
-      friends {
-        _id
-        username
-      }
-      groups {
-        _id
-        groupText
-        createdAt
-        reactionCount
-      }
     }
   }
 `;
 
 export const QUERY_ME = gql`
-  {
     me {
+    _id
+    username
+    email
+    posts {
       _id
+      postText
+      createdAt
       username
-      email
-      friendCount
-      groups {
-        _id
-        groupText
-        createdAt
-        reactionCount
-        reactions {
-          _id
-          createdAt
-          reactionBody
-          username
-        }
-      }
-      friends {
-        _id
-        username
-      }
+    }
+    groups {
+      _id
+      name
+      description
     }
   }
+}
 `;
 
 export const QUERY_ME_BASIC = gql`
-  {
     me {
       _id
       username
@@ -95,18 +111,5 @@ export const QUERY_ME_BASIC = gql`
   }
 `;
 
-export const QUERY_INTERESTS = gql`
-  {
-    me {
-      _id
-      username
-      email
-      friendCount
-      friends {
-        _id
-        username
-      }
-    }
-  }
-`;
+
 
