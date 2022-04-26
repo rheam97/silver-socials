@@ -25,29 +25,31 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_GROUP = gql`
-  mutation   addGroup(input: $input, name: $name) {
+ mutation AddGroup($name: String!, $input: addThisGroup) {
+  addGroup(name: $name, input: $input) {
     name
     groups {
+      _id
       name
       description
     }
   }
+}
 `;
 
 export const ADD_POST = gql`
-   mutation addPost(postText: $postText, groupId: $groupId) {
+  mutation AddPost($postText: String!, $groupId: ID!) {
+  addPost(postText: $postText, groupId: $groupId) {
     user {
       _id
       username
-      email
       posts {
         _id
         postText
         createdAt
         username
       }
-    }
-      group {
+      groups {
         _id
         name
         description
@@ -58,20 +60,25 @@ export const ADD_POST = gql`
           username
         }
       }
+    }
   }
+}
 `;
 
 export const REMOVE_POST = gql`
-  mutation removePost(postId: $postId) {
+mutation RemovePost($postId: ID!) {
+  removePost(postId: $postId) {
     user {
       _id
       username
-      email
       posts {
         _id
         postText
       }
       groups {
+        _id
+        name
+        description
         posts {
           _id
           postText
@@ -79,22 +86,29 @@ export const REMOVE_POST = gql`
       }
     }
   }
+}
 `;
 
 export const JOIN_GROUP = gql`
-mutation joinGroup(groupId: $groupId) {
-    group {
-      name
-      description
-      members {
-        username
-      }
-    }
+mutation JoinGroup($groupId: ID!) {
+  joinGroup(groupId: $groupId) {
     user {
+      _id
       username
       groups {
+        _id
         name
         description
       }
     }
-  }`;
+    group {
+      _id
+      name
+      description
+      members {
+        _id
+        username
+      }
+    }
+  }
+}`;

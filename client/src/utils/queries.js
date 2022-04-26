@@ -2,7 +2,8 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_INTERESTS = gql`
-   interests {
+   query Interests {
+  interests {
     name
     groups {
       name
@@ -10,32 +11,36 @@ export const QUERY_INTERESTS = gql`
       description
     }
   }
-`
+}
+ `
 export const QUERY_INTEREST = gql`
-  query getInterest(name: $name) {
+query Interest($name: String!) {
+  interest(name: $name) {
     name
     groups {
-      _id
       name
       description
+      _id
     }
   }
+}
 `
-// export const QUERY_GROUPS = gql`
-// query groups($username: String) {
-//   groups(username: $username) {
-//     groups {
-//      _id
-//     name
-//     description
-//     }
-//   }
-// }
-// `;
+export const QUERY_GROUPS = gql`
+query groups($username: String) {
+  groups(username: $username) {
+    groups {
+     _id
+    name
+    description
+    }
+  }
+}
+`;
 
 
 export const QUERY_GROUP = gql`
- query getGroup(_id: $id) {
+ query Group($id: ID!) {
+  group(_id: $id) {
     _id
     name
     description
@@ -56,29 +61,32 @@ export const QUERY_GROUP = gql`
       username
     }
   }
+}
 `;
 
 export const QUERY_USER = gql`
-  query getUser(username: $username) {
+ query User($username: String!) {
+  user(username: $username) {
     _id
     username
-    email
-    groups {
-      _id
-      name
-      description
-    }
     posts {
       _id
       postText
       createdAt
       username
     }
+    groups {
+      _id
+      name
+      description
+    }
   }
+}
 `;
 
 export const QUERY_ME = gql`
-    me {
+ query Me {
+  me {
     _id
     username
     email
@@ -98,17 +106,13 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_ME_BASIC = gql`
-    me {
-      _id
-      username
-      email
-      friendCount
-      friends {
-        _id
-        username
-      }
+ query Me {
+  me {
+    _id
+    username
+    email
     }
-  }
+    }
 `;
 
 
