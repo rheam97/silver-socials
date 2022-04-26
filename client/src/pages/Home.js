@@ -2,13 +2,14 @@
 // button to make a group?
 
 import React from "react";
-import SocialGroup from "../components/InterestMenu";
+// import SocialGroup from "../components/InterestMenu";
 import GroupForm from "../components/GroupForm";
-import PersonalList from "../components/PersonalGroupList";
+import PersonalList from "../components/GroupList";
 
 import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
 import { QUERY_GROUPS, QUERY_ME_BASIC } from "../utils/queries";
+import InterestMenu from "../components/InterestMenu";
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_GROUPS);
@@ -20,7 +21,10 @@ const Home = () => {
   return (
     <main>
       <div className="flex-row justify-space-between">
-        {loggedIn && (
+        <div className="col-12 mb-3">
+          <InterestMenu />
+        </div>
+        {/* {loggedIn && (
           <div className="col-12 mb-3">
             <GroupForm />
           </div>
@@ -39,7 +43,7 @@ const Home = () => {
               posts={userData.me.posts}
             />
           </div>
-        ) : null}
+        ) : null} */}
       </div>
     </main>
   );

@@ -5,7 +5,7 @@ import { Redirect, useParams } from "react-router-dom";
 
 import GroupForm from "../components/GroupForm";
 import SocialGroup from "../components/InterestMenu";
-import PersonalList from "../components/PersonalGroupList";
+import PersonalList from "../components/GroupList";
 import Posts from "../components/Post";
 
 import { useQuery, useMutation } from "@apollo/client";

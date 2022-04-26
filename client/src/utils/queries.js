@@ -95,3 +95,18 @@ export const QUERY_ME_BASIC = gql`
   }
 `;
 
+export const QUERY_INTERESTS = gql`
+  {
+    me {
+      _id
+      username
+      email
+      friendCount
+      friends {
+        _id
+        username
+      }
+    }
+  }
+`;
+
