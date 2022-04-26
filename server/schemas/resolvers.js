@@ -27,12 +27,24 @@ const resolvers = {
         },
         interests: async ()=> {
             return await Interest.find()
+            .populate('groups')
         },
         interest: async (parent, {name}, context)=> {
             return await Interest.findOne(name).populate('groups')
         },
         group: async(parent, {_id})=> {
             return Group.findById(_id)
+            .populate('members')
+            .populate('posts')
+        },
+        posts: async()=> {
+            return await Post.find()
+        },
+        post: async(parent, args, context)=> {
+            return await Post.findById(args.postId)
+        },
+        getallgroups: async() => {
+            return await Group.find()
             .populate('members')
             .populate('posts')
         },
@@ -47,8 +59,8 @@ const resolvers = {
             return User.findOne(username)
             .select('-__v -password')
             .populate('friends')
-            .populate('posts')
-            .populate('groups')
+            .execPopulate('posts')
+            .execPopulate('groups')
         }
     },
     Mutation: {
@@ -69,21 +81,21 @@ const resolvers = {
             const token = signToken(user)
             return {token, user}
         },
-        addPost: async(parent, args, context)=> {
+        addPost: async(parent, {postText, groupId}, context)=> {
             if(context.user){
-                const post = await Post.create({...args, username: context.user.username})
-
-                await User.findByIdAndUpdate(
+                // console.log(args)
+                const post = await Post.create({postText: postText, username: context.user.username})
+               const updatedUser= await User.findByIdAndUpdate(
                     {_id: context.user._id},
-                    {$push: {posts: args._id}},
+                    {$push: {posts: post}},
                     {new: true}
-                )
-                await Group.findByIdAndUpdate(
-                    {_id: group._id},
-                    {$addToSet: {posts: args._id}},
+                ).populate('posts')
+               const updatedGroup = await Group.findByIdAndUpdate(
+                    {_id: groupId},
+                    {$push: {posts: post}},
                     {new: true}
-                )
-                return post
+                ).populate('posts')
+                return {user: updatedUser, group: updatedGroup}
             }
             throw new AuthenticationError('You need to be logged in.')
         },
@@ -93,26 +105,45 @@ const resolvers = {
                     {_id: groupId},
                     {$pull: {posts: postId}},
                     {new: true}
-                )
-                await User.findByIdAndUpdate(
+                ).populate('posts')
+               const updatedUser= await User.findByIdAndUpdate(
                     {_id: context.user._id},
                     {$pull: {posts: postId}},
                     {new: true}
-                )
-                return updatedGroup
+                ).populate('posts')
+                return {user: updatedUser, group: updatedGroup}
             }
             throw new AuthenticationError('You need to be logged in.')
         },
         addGroup: async (parent, {name, input}, context) => {
             if (context.user) {
             const group = await Group.create(input)
-            //   await Interest.findOneAndUpdate(
-            //     { name: name },
-            //     { $push: { groups: { input } } },
-            //     { new: true, runValidators: true }
-            //   );
+              const updatedInterest = await Interest.findOneAndUpdate(
+                { name: name },
+                { $push: { groups:  {_id: group._id } }},
+                { new: true, runValidators: true }
+              ).populate('groups');
       
-              return group;
+              return updatedInterest;
+            }
+      
+            throw new AuthenticationError('You need to be logged in!');
+          },
+          // join group: user to group
+          joinGroup: async (parent, {groupId}, context) => {
+            if (context.user) {
+              const updatedGroup = await Group.findOneAndUpdate(
+                { _id: groupId },
+                { $push: { members: { _id: context.user._id } } },
+                { new: true }
+              ).populate('members');
+             const updatedUser = await User.findOneAndUpdate(
+                  {_id: context.user._id},
+                  {$push: {groups: {_id: groupId}}},
+                  { new: true}
+              ).populate('groups')
+      
+              return {user: updatedUser, group: updatedGroup}
             }
       
             throw new AuthenticationError('You need to be logged in!');
