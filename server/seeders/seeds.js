@@ -28,8 +28,8 @@ db.once("open", async () => {
   for (let i = 0; i < 10; i += 1) {
     const postText = faker.lorem.words(Math.round(Math.random() * 20) + 1);
 
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { username, _id: userId } = createdUsers.ops[randomUserIndex];
+    // const randomUserIndex = Math.floor(createdUsers.ops.length);
+    const { username, _id: userId } = createdUsers.ops[i];
     // const randomGroupIndex = Math.floor(
     //   Math.random() * createdGroups.ops.length
     // );
