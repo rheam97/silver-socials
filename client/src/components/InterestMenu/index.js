@@ -2,7 +2,7 @@
 
 //import React from "react";
 import { Link } from "react-router-dom";
-import React, { useEffect } from "react";
+import React, { useEffect, render } from "react";
 import { useQuery } from "@apollo/client";
 //import { useStoreContext } from '../../utils/GlobalState';
 // import {
@@ -10,7 +10,8 @@ import { useQuery } from "@apollo/client";
 //   UPDATE_CURRENT_INTEREST,
 // } from '../../utils/actions';
 import { QUERY_INTERESTS } from "../../utils/queries";
-import { render } from "express/lib/response";
+import GroupList from "../GroupList";
+//import { render } from "express/lib/response";
 // import { idbPromise } from "../../utils/helpers";
 
 function InterestMenu() {
@@ -45,26 +46,33 @@ function InterestMenu() {
     //     type: UPDATE_CURRENT_INTEREST,
     //     currentInterest: id,
     //   });
+    //render(<GroupList />);
+    //<Link to="/group">{item.name}</Link>
   };
 
   // mock data
   const interests = [
     { name: "Arts & Crafts", _id: 1 },
-    { name: "Outdoor Adventures", _id: 2 }
+    { name: "Outdoor Adventures", _id: 2 },
+    { name: "Health & Wellness", _id: 3 },
+    { name: "Community Service", _id: 4 },
+    { name: "Music & Dance", _id: 5 },
+
+
+
   ];
 
   return (
     <div>
-      <h2>Choose a Interest:</h2>
+      <h2>Choose an Interest:</h2>
       {interests.map((item) => (
         <button
           key={item._id}
-          // onClick={() => {
-          //   handleClick(item._id);
-          // }}
-          >
-          {item.name}
-          {/* <Link to="/group">{item.name}</Link> */}
+          onClick={() => {
+            handleClick(item._id);
+          }}
+        >
+        <Link to="/group">{item.name}</Link>  
         </button>
       ))}
     </div>
