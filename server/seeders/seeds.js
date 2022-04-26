@@ -9,6 +9,7 @@ db.once("open", async () => {
   await Group.deleteMany({});
   await Interest.deleteMany({});
 
+    // create interest data
   const interestData = [
     { name: "Outdoors" },
     { name: "Arts and Crafts" },
@@ -16,8 +17,11 @@ db.once("open", async () => {
     { name: "Service" },
     { name: "Health and Wellness" },
   ];
-  // create interest data
-  const interests = await Interest.insertMany(interestData); //???
+  for (let i=0; i<interestData.length; i++){
+    await Interest.insertMany(interestData)
+  }
+
+
   console.log("interests seeded");
 
   // create user data
@@ -33,20 +37,32 @@ db.once("open", async () => {
 
   const createdUsers = await User.collection.insertMany(userData);
   console.log("users seeded");
+
   // create groups
   const groupData = [];
   for (let i = 0; i < 10; i++) {
     const name = faker.name.firstName();
     const description = faker.lorem.paragraph(); // not sure about this?
     groupData.push({ name, description });
-   const group = await Group.create(groupData[i])
-    await Interest.updateOne(
-      { name: interestData[i].name },
-      { $addToSet: { groups: {_id: group._id} } }
-    );
   }
   const createdGroups = await Group.collection.insertMany(groupData);
   console.log("groups seeded");
+
+  // create posts
+  let createdPosts = [];
+  for (let i = 0; i < 100; i += 1) {
+    const postText = faker.lorem.words(Math.round(Math.random() * 20) + 1);
+
+    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
+    const { username, _id: userId } = createdUsers.ops[randomUserIndex];
+
+    const createdPosts = await Post.insertMany({ postText: postText, username: userData.username });
+
+    createdPosts.push(createdPost);
+  }
+  console.log("posts seeded");
+
+
   // create members for groups
   for (let i = 0; i < 50; i += 1) {
     const randomGroupIndex = Math.floor(Math.random() * createdGroups.ops.length);
@@ -69,28 +85,8 @@ db.once("open", async () => {
     await User.updateOne({ _id: userId }, { $addToSet: { friends: friendId } });
   }
   console.log("friends seeded");
-  // create posts
-  let createdPosts = [];
-  for (let i = 0; i < 100; i += 1) {
-    const postText = faker.lorem.words(Math.round(Math.random() * 20) + 1);
 
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { username, _id: userId } = createdUsers.ops[randomUserIndex];
 
-    const createdPost = await Post.create({ postText, username });
-
-    const updatedUser = await User.updateOne(
-      { _id: userId },
-      { $push: { posts: createdPost._id } }
-    );
-    const updatedGroup = await Group.updateOne(
-      { _id: groupId }, // ?????
-      { $push: { posts: createdPost._id } }
-    );
-
-    createdPosts.push(createdPost);
-  }
-  console.log("posts seeded");
   console.log("all done!");
   process.exit(0);
 });

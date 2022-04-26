@@ -82,14 +82,24 @@ export const REMOVE_POST = gql`
 `;
 
 export const JOIN_GROUP = gql`
-mutation joinGroup(username: $username) {
-  user {
-    _id
-    username
-    groups {
+mutation joinGroup(groupId: ID!, username: $username) {
+    user {
+      _id
+      username
+      groups {
+        _id
+        name
+        description
+      }
+    }
+    group {
       _id
       name
       description
+      members {
+        _id
+        username
+      }
     }
   }
 }`;
