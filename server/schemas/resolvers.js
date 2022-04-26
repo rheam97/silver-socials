@@ -129,15 +129,15 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
           },
           // join group: user to group
-          joinGroup: async (parent, {groupId, username}, context) => {
+          joinGroup: async (parent, {groupId}, context) => {
             if (context.user) {
               const updatedGroup = await Group.findOneAndUpdate(
                 { _id: groupId },
-                { $push: { members: { username } } },
+                { $push: { members: { _id: context.user._id } } },
                 { new: true }
               ).populate('members');
-             const updatedUser = await User.findOneandUpdate(
-                  {username: username},
+             const updatedUser = await User.findOneAndUpdate(
+                  {_id: context.user._id},
                   {$push: {groups: {_id: groupId}}},
                   { new: true}
               ).populate('groups')
