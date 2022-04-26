@@ -15,6 +15,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
  import GroupList from "./components/GroupList";
+ import GroupItem from "./components/GroupItem";
 // import Interest from "./pages/Interest";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
@@ -51,7 +52,9 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/profile/:username?" component={Profile} />
-              { <Route exact path="/group" component={GroupList} /> }
+               <Route exact path="/group" component={GroupList} /> 
+               <Route exact path="/groupitem" component={GroupItem} /> 
+
               {/* <Route exact path="/interest/:id" component={Interest} /> */}
 
               <Route component={NoMatch} />

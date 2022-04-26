@@ -47,9 +47,47 @@ function GroupList() {
   //   );
   // }
 
+
+  const handleClick = (id) => {
+    console.log(id);
+    //   dispatch({
+    //     type: UPDATE_CURRENT_INTEREST,
+    //     currentInterest: id,
+    //   });
+    //render(<GroupList />);
+    //<Link to="/group">{item.name}</Link>
+  };
+
+
+
+
+
+  // mock data
+  const interests = [
+    { name: "Ballroom Dancing", _id: 1 },
+    { name: "Yoga", _id: 2 },
+    { name: "Photography", _id: 3 },
+    { name: "Hiking", _id: 4 },
+    { name: "Cooking", _id: 5 },
+  ];
+
   return (
     <div className="my-2">
       <h2>Our Groups:</h2>
+      <div>
+        <h2>Choose a Group:</h2>
+        {interests.map((item) => (
+          <button
+            key={item._id}
+            onClick={() => {
+              handleClick(item._id);
+            }}
+          >
+            <Link to="/groupitem">{item.name}</Link>
+          </button>
+        ))}
+      </div>
+     
       {/* {state.groups.length ? (
         <div className="flex-row">
           {filterGroups().map((group) => (
