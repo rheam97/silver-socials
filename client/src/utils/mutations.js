@@ -25,9 +25,9 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_GROUP = gql`
-  mutation addGroup($input: addThisGroup) {
-    addGroup(input: $input) {
-      _id
+  mutation   addGroup(input: $input, name: $name) {
+    name
+    groups {
       name
       description
     }
@@ -82,24 +82,19 @@ export const REMOVE_POST = gql`
 `;
 
 export const JOIN_GROUP = gql`
-mutation joinGroup(groupId: ID!, username: $username) {
+mutation joinGroup(groupId: $groupId) {
+    group {
+      name
+      description
+      members {
+        username
+      }
+    }
     user {
-      _id
       username
       groups {
-        _id
         name
         description
       }
     }
-    group {
-      _id
-      name
-      description
-      members {
-        _id
-        username
-      }
-    }
-  }
-}`;
+  }`;
