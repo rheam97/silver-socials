@@ -3,7 +3,7 @@
 
 import React from "react";
 // import SocialGroup from "../components/InterestMenu";
-import GroupForm from "../components/GroupForm";
+// import GroupForm from "../components/GroupForm";
 import PersonalList from "../components/GroupList";
 
 import Auth from "../utils/auth";
