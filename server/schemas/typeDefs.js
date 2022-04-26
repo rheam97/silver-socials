@@ -34,18 +34,29 @@ type Query {
     interest (name: String!): Interest
     interests: [Interest]
     me: User
+    posts: [Post]
+    post(postId: ID!): Post
     user(username: String!): User
     users: [User]
+    getallgroups: [Group]
     groups(username: String!): User
     group(_id: ID!): Group
+}
+type AddPostResponse {
+user: User
+group: Group
+}
+type joinGroupResponse {
+    user: User
+    group: Group
 }
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addGroup(input: addThisGroup): Group
-    addPost(postText: String!): Post
-    removePost(postId: ID!): Group
-    joinGroup(username: String!): Group
+    addPost(postText: String!, groupId: ID!): AddPostResponse
+    removePost(postId: ID!): AddPostResponse
+    joinGroup(username: String!): joinGroupResponse
 }
 type Auth {
     token: ID!
