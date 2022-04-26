@@ -2,11 +2,11 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_INTERESTS = gql`
-  interests {
+   interests {
     name
     groups {
-      _id
       name
+      _id
       description
     }
   }
