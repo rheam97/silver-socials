@@ -138,6 +138,14 @@ db.once("open", async () => {
   ]);
   console.log('groups seeded')
 
+  // push groups into users
+  for (let i=0; i< userData.length; i++){
+    await User.updateOne(
+      {_id: userData[i]._id},
+      {$push: {groups: groups[i]._id}})
+  }
+console.log('pushed groups into users')
+
   // create interest data
   const interestData = [
     { name: "Outdoors", groups: [groups[0]._id, groups[1]._id] },

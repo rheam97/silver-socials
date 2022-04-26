@@ -44,6 +44,8 @@ const resolvers = {
         },
         getallgroups: async() => {
             return await Group.find()
+            .populate('members')
+            .populate('posts')
         },
         users: async()=> {
             return User.find()
@@ -56,8 +58,8 @@ const resolvers = {
             return User.findOne(username)
             .select('-__v -password')
             .populate('friends')
-            .populate('posts')
-            .populate('groups')
+            .execPopulate('posts')
+            .execPopulate('groups')
         }
     },
     Mutation: {
