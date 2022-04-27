@@ -57,8 +57,8 @@ function GroupList() {
     // not sure why its doing this twice but works now!!
     // return state.groups.filter((g)=> filteredGroups
  
-
-    return [state.groups, filteredGroups]
+    
+    return state.groups =filteredGroups
 
     //when currentInterest exists
     // ***if the interests on the state has the currentinterest as a name,
