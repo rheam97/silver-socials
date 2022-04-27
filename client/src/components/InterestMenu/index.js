@@ -44,7 +44,7 @@ function InterestMenu() {
   }, [data, loading, dispatch])
 
   const handleClick = (name) => {
-    console.log(name);
+    // console.log(name);
       dispatch({
         type: UPDATE_CURRENT_INTEREST,
         currentInterest: name,
