@@ -15,8 +15,8 @@ const HomeProvider = ({value=[], ...props})=> {
    
     return <Provider value={[state, dispatch]} {...props}/>
 }
-const useStoreContext = ()=> {
+const useHomeContext = ()=> {
     return useContext(HomeContext)
 }
 
-export {HomeProvider, useStoreContext}
+export {HomeProvider, useHomeContext}

@@ -4,29 +4,32 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, render } from "react";
 import { useQuery } from "@apollo/client";
-//import { useStoreContext } from '../../utils/GlobalState';
-// import {
-//   UPDATE_INTERESTS,
-//   UPDATE_CURRENT_INTEREST,
-// } from '../../utils/actions';
+import { useHomeContext } from '../../utils/HomeStore';
+import {
+  UPDATE_INTERESTS,
+  UPDATE_CURRENT_INTEREST,
+} from '../../utils/actions';
 import { QUERY_INTERESTS } from "../../utils/queries";
 import GroupList from "../GroupList";
+
 //import { render } from "express/lib/response";
 // import { idbPromise } from "../../utils/helpers";
 
 function InterestMenu() {
-  //const [state, dispatch] = useStoreContext();
+  const [state, dispatch] = useHomeContext();
 
-  //const { interests } = state;
+  const { interests } = state;
 
-  // const { loading, data: interestData } = useQuery(QUERY_INTERESTS);
+  const { loading, error, data} = useQuery(QUERY_INTERESTS);
 
-  // useEffect(() => {
-  //   if (interestData) {
-  //     // dispatch({
-  //     //   type: UPDATE_INTERESTS,
-  //     //   interests: interestData.interests,
-  //     // });
+   useEffect(() => {
+    if (data) {
+      dispatch({
+        type: UPDATE_INTERESTS,
+        interests: data,
+      });}
+      // console.log(interestData) // coming undefined
+      // console.log(error) 
   //     interestData.interests.forEach((interest) => {
   //       idbPromise('interests', 'put', interest);
   //     });
@@ -38,41 +41,41 @@ function InterestMenu() {
   //       // });
   //     });
   //   }
-  // }, [interestData, loading, dispatch])
+  }, [data, loading, dispatch])
 
-  const handleClick = (id) => {
-    console.log(id);
-    //   dispatch({
-    //     type: UPDATE_CURRENT_INTEREST,
-    //     currentInterest: id,
-    //   });
+  const handleClick = (name) => {
+    console.log(name);
+      dispatch({
+        type: UPDATE_CURRENT_INTEREST,
+        currentInterest: name,
+      });
     //render(<GroupList />);
     //<Link to="/group">{item.name}</Link>
   };
 
   // mock data
-  const interests = [
-    { name: "Arts & Crafts", _id: 1 },
-    { name: "Outdoor Adventures", _id: 2 },
-    { name: "Health & Wellness", _id: 3 },
-    { name: "Community Service", _id: 4 },
-    { name: "Music & Dance", _id: 5 },
+  // const interests = [
+  //   { name: "Arts & Crafts", _id: 1 },
+  //   { name: "Outdoor Adventures", _id: 2 },
+  //   { name: "Health & Wellness", _id: 3 },
+  //   { name: "Community Service", _id: 4 },
+  //   { name: "Music & Dance", _id: 5 },
 
 
 
-  ];
+  // ];
 
   return (
     <div>
-      <h2>Choose an Interest:</h2>
-      {interests.map((item) => (
+      <h2>Choose By Interest:</h2>
+      {interests.map((interest) => (
         <button
-          key={item._id}
+          key={interest.name}
           onClick={() => {
-            handleClick(item._id);
+            handleClick(interest.name);
           }}
-        >
-        <Link to="/group">{item.name}</Link>  
+        > {interest.name}
+        {/* <Link to="/group">{item.name}</Link>   */}
         </button>
       ))}
     </div>

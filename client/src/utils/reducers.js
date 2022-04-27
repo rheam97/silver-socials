@@ -6,74 +6,37 @@ import {
   ADD_TO_INTEREST,
 } from "./actions";
 
+// GET_INTERESTS
+// first query to get interests
+// let allGroups = []
+// interests.forEach(i=> allGroups.concat(i.groups))
+//if UPDATE_INTERESTS_FILTER
+//let newinterestFilters= [...state.interestFilters, action.interestFilter]
+//let newVisibleGroups = []
+//interest.forEach(i=> newInterestFilter.includes(i)? newVisibleGroups.concat(i.groups))[...state.allGroups.filter((i)=> {return newinterestFilters.includes(i.groups}]
+
 export const reducer = (state, action) => {
   console.log(`action:`, action);
   switch (action.type) {
     case UPDATE_GROUPS:
-      console.log(`action products: `, action.products);
       return {
         ...state,
-        products: [...action.products],
+        groups: [...action.groups.getallgroups],
       };
-    // GET_INTERESTS
-    // first query to get interests
-    // let allGroups = []
-    // interests.forEach(i=> allGroups.concat(i.groups))
-    case UPDATE_CATEGORIES:
-      //if UPDATE_INTERESTS_FILTER
-      //let newinterestFilters= [...state.interestFilters, action.interestFilter]
-      //let newVisibleGroups = []
-      //interest.forEach(i=> newInterestFilter.includes(i)? newVisibleGroups.concat(i.groups))[...state.allGroups.filter((i)=> {return newinterestFilters.includes(i.groups}]
+    case UPDATE_INTERESTS:
       return {
         ...state,
-        categories: [...action.categories],
+        interests: [...action.interests.interests],
       };
-    case UPDATE_CURRENT_CATEGORY:
+    case UPDATE_CURRENT_INTEREST:
       return {
         ...state,
-        currentCategory: action.currentCategory,
+        currentInterest: action.currentInterest,
       };
-    case ADD_TO_CART:
+    case ADD_TO_INTEREST: // not sure about this one for adding group??
       return {
         ...state,
-        cartOpen: true,
-        cart: [...state.cart, action.product],
-      };
-    case ADD_MULTIPLE_TO_CART:
-      return {
-        ...state,
-        cart: [...state.cart, ...action.products],
-      };
-    case REMOVE_FROM_CART:
-      let newState = state.cart.filter((product) => {
-        return product._id !== action._id;
-      });
-      return {
-        ...state,
-        cartOpen: newState.length > 0,
-        cart: newState,
-      };
-    case UPDATE_CART_QUANTITY:
-      return {
-        ...state,
-        cartOpen: true,
-        cart: state.cart.map((product) => {
-          if (action._id === product._id) {
-            product.purchaseQuantity = action.purchaseQuantity;
-          }
-          return product;
-        }),
-      };
-    case CLEAR_CART:
-      return {
-        ...state,
-        cartOpen: false,
-        cart: [],
-      };
-    case TOGGLE_CART:
-      return {
-        ...state,
-        cartOpen: !state.cartOpen,
+        interest: [...state.interests, ...action.groups]
       };
     default:
       return state;

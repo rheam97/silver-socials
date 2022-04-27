@@ -4,26 +4,28 @@
 import { Link } from "react-router-dom";
 import React, { useEffect } from "react";
 import GroupItem from "../GroupItem";
-//import { useStoreContext } from "../../utils/GlobalState";
-//import { UPDATE_GROUPS } from "../../utils/actions";
+import { useHomeContext } from "../../utils/HomeStore";
+import { UPDATE_GROUPS } from "../../utils/actions";
 import { useQuery } from "@apollo/client";
 import { QUERY_GROUPS } from "../../utils/queries";
 // import { idbPromise } from "../../utils/helpers";
 import spinner from "../../assets/spinner.gif";
 
 function GroupList() {
-  //const [state, dispatch] = useStoreContext();
+  const [state, dispatch] = useHomeContext();
 
-  //const { currentInterest } = state;
+  const { currentInterest } = state;
 
-  const { loading, data } = useQuery(QUERY_GROUPS);
+  const { loading, error, data } = useQuery(QUERY_GROUPS);
 
-  // useEffect(() => {
-  //   if (data) {
-  //     // dispatch({
-  //     //   type: UPDATE_GROUPS,
-  //     //   groups: data.groups,
-  //     // });
+  useEffect(() => {
+    if (data) {
+      dispatch({
+        type: UPDATE_GROUPS,
+        groups: data,
+      });}
+      console.log(error)
+      console.log(data) // comes before interests, undefined
   //     data.groups.forEach((group) => {
   //       idbPromise("groups", "put", group);
   //     });
@@ -35,9 +37,14 @@ function GroupList() {
   //       // });
   //     });
   //   }
-  // }, [data, loading, dispatch]);
+  }, [data, loading, dispatch]);
 
-  // function filterGroups() {
+   //if UPDATE_INTERESTS_FILTER
+      //let newinterestFilters= [...state.interestFilters, action.interestFilter]
+      //let newVisibleGroups = []
+      //interest.forEach(i=> 
+      //newInterestFilter.includes(i)? newVisibleGroups.concat(i.groups))[...state.allGroups.filter((i)=> {return newinterestFilters.includes(i.groups}]
+  // function filterGroupsbyInterest() {
   //   if (!currentInterest) {
   //     return state.groups;
   //   }
@@ -48,65 +55,52 @@ function GroupList() {
   // }
 
 
-  const handleClick = (id) => {
-    console.log(id);
-    //   dispatch({
-    //     type: UPDATE_CURRENT_INTEREST,
-    //     currentInterest: id,
-    //   });
-    //render(<GroupList />);
-    //<Link to="/group">{item.name}</Link>
-  };
+  // // const handleClick = (id) => {
+  // //   console.log(id);
+  // //     dispatch({
+  // //       type: UPDATE_CURRENT_INTEREST,
+  // //       currentInterest: id,
+  // //     });
+  //   //render(<GroupList />);
+  //   //<Link to="/group">{item.name}</Link>
+  // };
 
 
 
 
 
   // mock data
-  const interests = [
-    { name: "Ballroom Dancing", _id: 1 },
-    { name: "Yoga", _id: 2 },
-    { name: "Photography", _id: 3 },
-    { name: "Hiking", _id: 4 },
-    { name: "Cooking", _id: 5 },
-  ];
+  // const interests = [
+  //   { name: "Ballroom Dancing", _id: 1 },
+  //   { name: "Yoga", _id: 2 },
+  //   { name: "Photography", _id: 3 },
+  //   { name: "Hiking", _id: 4 },
+  //   { name: "Cooking", _id: 5 },
+  // ];
 
   return (
     <div className="my-2">
-      <h2>Our Groups:</h2>
-      <div>
-        <h2>Choose a Group:</h2>
-        {interests.map((item) => (
-          <button
-            key={item._id}
-            onClick={() => {
-              handleClick(item._id);
-            }}
-          >
-            <Link to="/groupitem">{item.name}</Link>
-          </button>
-        ))}
-      </div>
-     
-      {/* {state.groups.length ? (
+      <h2>Groups for {currentInterest}:</h2>
+      {state.groups.length ? (
         <div className="flex-row">
-          {filterGroups().map((group) => (
+          {state.groups.map((group) => (
             <GroupItem
               key={group._id}
               _id={group._id}
-              image={group.image}
               name={group.name}
-              price={group.price}
-              quantity={group.quantity}
+              description={group.description}
+              members={group.members}
+              posts={group.posts}
             />
           ))}
         </div>
       ) : (
-        <h3>You haven't added any groups yet!</h3>
+        <h3>No groups added under this interest yet!</h3>
       )}
-      {loading ? <img src={spinner} alt="loading" /> : null} */}
+      {loading ? <img src={spinner} alt="loading" /> : null}
     </div>
   );
 }
+
 
 export default GroupList;
