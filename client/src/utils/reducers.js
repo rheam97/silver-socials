@@ -32,11 +32,12 @@ export const reducer = (state, action) => {
       return {
         ...state,
         currentInterest: action.currentInterest,
+        // groups: [...action.interests.interests.name?{currentInterest}.groups]
       };
     case ADD_TO_INTEREST: // not sure about this one for adding group??
       return {
         ...state,
-        interest: [...state.interests, ...action.groups]
+        interests: [...state.interests.interests.groups, ...action.groups]
       };
     default:
       return state;

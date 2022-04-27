@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import React, { useEffect } from "react";
 import GroupItem from "../GroupItem";
 import { useHomeContext } from "../../utils/HomeStore";
-import { UPDATE_GROUPS } from "../../utils/actions";
+import { UPDATE_GROUPS, GET_GROUPS } from "../../utils/actions";
 import { useQuery } from "@apollo/client";
 import { QUERY_GROUPS } from "../../utils/queries";
 // import { idbPromise } from "../../utils/helpers";
@@ -23,37 +23,55 @@ function GroupList() {
       dispatch({
         type: UPDATE_GROUPS,
         groups: data,
-      });}
-      console.log(error)
-      console.log(data) // comes before interests, undefined
-  //     data.groups.forEach((group) => {
-  //       idbPromise("groups", "put", group);
-  //     });
-  //   } else if (!loading) {
-  //     idbPromise("groups", "get").then((groups) => {
-  //       // dispatch({
-  //       //   type: UPDATE_GROUPS,
-  //       //   groups: groups,
-  //       // });
-  //     });
-  //   }
+      });
+    }
+    console.log(error);
+    console.log(data); // comes before interests, undefined
+    //     data.groups.forEach((group) => {
+    //       idbPromise("groups", "put", group);
+    //     });
+    //   } else if (!loading) {
+    //     idbPromise("groups", "get").then((groups) => {
+    //       // dispatch({
+    //       //   type: UPDATE_GROUPS,
+    //       //   groups: groups,
+    //       // });
+    //     });
+    //   }
   }, [data, loading, dispatch]);
 
-   //if UPDATE_INTERESTS_FILTER
-      //let newinterestFilters= [...state.interestFilters, action.interestFilter]
-      //let newVisibleGroups = []
-      //interest.forEach(i=> 
-      //newInterestFilter.includes(i)? newVisibleGroups.concat(i.groups))[...state.allGroups.filter((i)=> {return newinterestFilters.includes(i.groups}]
-  // function filterGroupsbyInterest() {
-  //   if (!currentInterest) {
-  //     return state.groups;
-  //   }
+  //if UPDATE_INTERESTS_FILTER
+  //let newinterestFilters= [...state.interestFilters, action.interestFilter]
+  //let newVisibleGroups = []
+  //interest.forEach(i=>
+  //newInterestFilter.includes(i)? newVisibleGroups.concat(i.groups))[...state.allGroups.filter((i)=> {return newinterestFilters.includes(i.groups}]
+  function filterGroupsbyInterest() {
+    if (!currentInterest) {
+      return state.groups;
+    }
+    let filteredGroups
+    state.interests.forEach((i) =>
+      i.name === currentInterest ?  filteredGroups=i.groups : null
+    )
+    console.log('these r the filtered groups', filteredGroups)
+    // not sure why its doing this twice but works now!!
+    // return state.groups.filter((g)=> filteredGroups
+ 
 
-  //   return state.groups.filter(
-  //     (group) => group.interest._id === currentInterest
-  //   );
-  // }
+    return [state.groups, filteredGroups]
 
+    //when currentInterest exists
+    // ***if the interests on the state has the currentinterest as a name,
+    // return that interests' groups
+    // return state.groups.filter((group) => {
+    /// says cannot read prop of undefined reading name when i map filter
+    // if (state.interests.interests.name===currentInterest) {
+    //   group = state.interests.interests.groups;
+    // }
+    // ***not good nested for loop
+
+    // }
+  }
 
   // // const handleClick = (id) => {
   // //   console.log(id);
@@ -64,10 +82,6 @@ function GroupList() {
   //   //render(<GroupList />);
   //   //<Link to="/group">{item.name}</Link>
   // };
-
-
-
-
 
   // mock data
   // const interests = [
@@ -83,7 +97,7 @@ function GroupList() {
       <h2>Groups for {currentInterest}:</h2>
       {state.groups.length ? (
         <div className="flex-row">
-          {state.groups.map((group) => (
+          {filterGroupsbyInterest().map((group) => (
             <GroupItem
               key={group._id}
               _id={group._id}
@@ -101,6 +115,5 @@ function GroupList() {
     </div>
   );
 }
-
 
 export default GroupList;

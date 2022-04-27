@@ -49,6 +49,7 @@ function InterestMenu() {
         type: UPDATE_CURRENT_INTEREST,
         currentInterest: name,
       });
+    
     //render(<GroupList />);
     //<Link to="/group">{item.name}</Link>
   };
