@@ -45,6 +45,10 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
+        {/* hide header when url on signup page */}
+          {/* {
+          props.location.pathname!=='/signup' ? <Header/>:null
+          } */}
           <Header />
           <div className="container">
             <Switch>
