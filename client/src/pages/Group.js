@@ -28,13 +28,13 @@ const SingleGroup = (props) => {
     <div>
       <div className="card mb-3">
         <p className="card-header">
-          <span style={{ fontWeight: 700 }} className="text-light">
-            {group.username}
+           <span style={{ fontWeight: 700 }} className="text-light">
+           Group for {group.name} 
           </span>{" "}
-          group on {group.createdAt}
+          {group.member}
         </p>
         <div className="card-body">
-          <p>{group.groupText}</p>
+          <p>{group.description}</p>
         </div>
       </div>
 
