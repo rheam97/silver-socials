@@ -26,7 +26,7 @@ query Interest($name: String!) {
 }
 `
 export const QUERY_GROUPS = gql`
-query groups($username: String) {
+query groups($username: String!) {
   groups(username: $username) {
     groups {
      _id
