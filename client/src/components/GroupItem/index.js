@@ -14,6 +14,7 @@ function GroupItem(item) {
   //const { cart } = state
 
   const addMember = () => {
+   
     //const itemInCart = cart.find((cartItem) => cartItem._id === _id)
     //if (itemInCart) {
     // dispatch({
