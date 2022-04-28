@@ -4,8 +4,8 @@ import React from "react";
 import { Redirect, useParams } from "react-router-dom";
 
 import GroupForm from "../components/GroupForm";
-import SocialGroup from "../components/InterestMenu";
-import PersonalList from "../components/GroupList";
+import SocialGroup from "../components/InterestMenu"; // what is this?
+import PersonalList from "../components/GroupList"; // i dont think we need this here
 import Posts from "../components/Post";
 
 import { useQuery, useMutation } from "@apollo/client";
@@ -67,20 +67,20 @@ const Profile = (props) => {
 
       <div className="flex-row justify-space-between mb-3">
         <div className="col-12 mb-3 col-lg-8">
-          <SocialGroup
+          <SocialGroup // instead of this you can just map the groups returned by the query into a list element
             groups={user.groups}
             title={`${user.username}'s groups...`}
           />
         </div>
 
         <div className="col-12 col-lg-3 mb-3">
-          <PersonalList
+          <PersonalList // might be clitter to have this but same thing here
             username={user.username}
             posts={user.posts}
           />
         </div>
       </div>
-      <div className="mb-3">{!userParam && <GroupForm />}</div>
+      {/* <div className="mb-3">{!userParam && <GroupForm />}</div> */}
     </div>
   );
 };
