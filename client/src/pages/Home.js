@@ -20,7 +20,6 @@ const Home = () => {
 
   return (
     <main>
-      <HomeProvider>
       <div className="flex-row justify-space-between">
         <div>
           <GroupList/>
@@ -30,7 +29,6 @@ const Home = () => {
           <InterestMenu /> 
         </div>
       </div>
-      </HomeProvider>
     </main>
   );
 };
