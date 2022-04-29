@@ -2,54 +2,37 @@
 // button to make a group?
 
 import React from "react";
-// import SocialGroup from "../components/InterestMenu";
-// import GroupForm from "../components/GroupForm";
-import PersonalList from "../components/GroupList";
-import Header from '../components/Header';
+import GroupForm from "../components/GroupForm";
+import GroupList from "../components/GroupList";
 
 import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
-import { QUERY_GROUPS, QUERY_ME_BASIC } from "../utils/queries";
+import { QUERY_GROUPS, QUERY_INTERESTS, QUERY_INTEREST } from "../utils/queries";
 import InterestMenu from "../components/InterestMenu";
+// import {HomeProvider} from '../utils/HomeStore'
+import Header from '../components/Header';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_GROUPS);
-  const { data: userData } = useQuery(QUERY_ME_BASIC);
+
   const groups = data?.groups || [];
 
   const loggedIn = Auth.loggedIn();
 
   return (
-
-    
     <main>
     <Header />
+      {/* <HomeProvider> */}
       <div className="flex-row justify-space-between">
-        <div className="col-12 mb-3">
+        <div>
+          <GroupList/>
+          <GroupForm/>
+      </div>
+      <div className="col-12 mb-3">
           <InterestMenu /> 
         </div>
-        {/* maybe render groups under interests here when clicked???
-         {loggedIn && (
-          <div className="col-12 mb-3">
-            <GroupForm />
-          </div>
-        )}
-        <div className={`col-12 mb-3 ${loggedIn && "col-lg-8"}`}>
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <SocialGroup groups={groups} title="Some Feed for Group(s)..." />
-          )}
-        </div>
-        {loggedIn && userData ? (
-          <div className="col-12 col-lg-3 mb-3">
-            <PersonalList
-              username={userData.me.username}
-              posts={userData.me.posts}
-            />
-          </div>
-        ) : null} */}
       </div>
+      {/* </HomeProvider> */}
     </main>
   );
 };

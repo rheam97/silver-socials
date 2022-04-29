@@ -143,10 +143,10 @@ const Login = (props) => {
               render={(renderProps) => (
                 <button
                   type="button"
-                  className="form-input-btn flex"
+                  className="bg-mainColor flex justify-center text-center items-center p-3 rounded-lg cursor-pointer outline-none"
                   onClick={renderProps.onClick}
                   disabled={renderProps.disabled}
-                  style={{width:'100%', border:'2px solid lightgrey', color:'grey', background:'white'}}
+                  // style={{width:'100%', border:'2px solid lightgrey', color:'grey', background:'white'}}
                 >
                   <FcGoogle className="mr-4" /> Sign in with Google
                 </button>
