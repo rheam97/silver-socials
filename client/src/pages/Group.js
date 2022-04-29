@@ -4,6 +4,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import PostList from "../components/Post";
+import PostForm from "../components/PostForm";
 import Interest from "../components/InterestMenu";
 import GroupForm from "../components/GroupForm";
 import GroupItem from "../components/GroupItem";
@@ -25,23 +26,25 @@ const SingleGroup = (props) => {
   }
 
   return (
-    
-      <><div className="card mb-3">
-      <p className="card-header">
-        <span style={{ fontWeight: 700 }} className="text-light">
-          Group for {group.name}
-        </span>{" "}
-        {group.member}
-      </p>
-      <div className="card-body">
-        <p>{group.description}</p>
+    <>
+      <div className="card mb-3">
+        <p className="card-header">
+          <span style={{ fontWeight: 700 }} className="text-light">
+            Group for {group.name}
+          </span>{" "}
+          {group.member}
+        </p>
+        <div className="card-body">
+          <p>{group.description}</p>
+        </div>
       </div>
-    </div><div>
+      <div>
         {<PostList posts={group.posts} />}
         {<GroupItem />}
-
+        {<PostForm />}
         {Auth.loggedIn() && <GroupForm groupId={group._id} />}
-      </div></>
+      </div>
+    </>
   );
 };
 
