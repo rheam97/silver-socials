@@ -43,9 +43,9 @@ const Signup = () => {
   // from material ui
   return (
     <>
-    <div className='form-container'>
+    <div className='form-container' style={{height:'100vh'}}>
     <div className="form-content-left">
-      <img src={silversociallogo} alt="silver-socials-logo" className='form-img'/>
+      <img src={silversociallogo} alt="silver-socials-logo" className='form-img' style={{height:'40%'}}/>
     </div> 
     <div className='form-content-right col-12 col-md-6'>
       <form onSubmit={handleFormSubmit} className='form'>
@@ -104,7 +104,7 @@ const Signup = () => {
         <button className='form-input-btn' type='submit'>
           Sign up
         </button>
-        {error && <div>Sign up failed </div>}
+        {error && <div><p style={{color:"red"}}>Sign up failed </p></div>}
         <span className='form-input-login'>
           Already have an account? Login <a href='/login'>here</a>
         </span>

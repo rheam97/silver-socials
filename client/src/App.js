@@ -40,7 +40,9 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
+function App(props) {
+            
+  
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -49,7 +51,7 @@ function App() {
           {/* {
           props.location.pathname!=='/signup' ? <Header/>:null
           } */}
-          <Header />
+          {/* <Header /> */}
           <div className="container">
             <Switch>
               <Route exact path="/" component={Home} />
@@ -64,7 +66,7 @@ function App() {
               <Route component={NoMatch} />
             </Switch>
           </div>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     </ApolloProvider>

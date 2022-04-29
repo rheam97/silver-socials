@@ -1,19 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
-$Poppins: 'Poppins',
-san-serif;
-// colors
 $primary: #199BC5;
 $secondary: #F5413D;
 $black: #000000;
 $dark-grey: #C4C4C4;
 $light-grey: #F6F6F6;
-// spacing
 $spacing-md: 16px;
 $spacing-lg: 32px;
-// border
 $borderRadius: 12px;
 $headerHeight: 100px;
-// media
 @mixin breakpoint($point) {
     @if $point==md {
         // 768px

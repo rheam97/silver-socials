@@ -5,6 +5,7 @@ import React from "react";
 // import SocialGroup from "../components/InterestMenu";
 // import GroupForm from "../components/GroupForm";
 import PersonalList from "../components/GroupList";
+import Header from '../components/Header';
 
 import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
@@ -19,7 +20,10 @@ const Home = () => {
   const loggedIn = Auth.loggedIn();
 
   return (
+
+    
     <main>
+    <Header />
       <div className="flex-row justify-space-between">
         <div className="col-12 mb-3">
           <InterestMenu /> 
