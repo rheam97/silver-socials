@@ -3,26 +3,68 @@
 import React from "react";
 import { Redirect, useParams } from "react-router-dom";
 
-import GroupForm from "../components/GroupForm";
-import SocialGroup from "../components/InterestMenu"; // what is this?
-import PersonalList from "../components/GroupList"; // i dont think we need this here
-import Posts from "../components/Post";
-
-import { useQuery, useMutation } from "@apollo/client";
+import ProfileGroups from "../components/ProfileGroups";
+import { useQuery} from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
-import { ADD_GROUP, ADD_POST } from "../utils/mutations";
 import Auth from "../utils/auth";
+
+// const Profile = () => {
+//   const { username: userParam } = useParams();
+
+//   const { loading, data } = useQuery(QUERY_USER, {
+//     variables: { username: userParam }
+//   });
+
+//   // const user = data?.user || {};
+
+//   const user = data?.me || data?.user || {};
+//   // console.log(user, "testing")
+//   // redirect to personal profile page if username is yours
+//   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+//     return <Redirect to="/profile" />;
+//   }
+
+//   if (loading) {
+//     return <div>Loading...</div>;
+//   }
+
+//   if (!user?.username) {
+//     return (
+//       <h4>
+//         You need to be logged in to see this. Use the navigation links above to
+//         sign up or log in!
+//       </h4>
+//     );
+//   }
+
+//   return (
+//     <div>
+//       <div className="flex-row mb-3">
+//         <h2 className="bg-dark text-secondary p-3 display-inline-block">
+//           Viewing {user.username}'s profile.
+//         </h2>
+//       </div>
+
+//       <div className="flex-row justify-space-between mb-3">
+//         <div className="col-12 mb-3 col-lg-8">
+//           <ProfileGroups groups={user.groups} title={`${user.username}'s groups...`} />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
 const Profile = (props) => {
   const { username: userParam } = useParams();
 
-  const [addpost] = useMutation(ADD_POST);
+  // const [addpost] = useMutation(ADD_POST);
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
-
+  
   const user = data?.me || data?.user || {};
-
+  console.log(user, "testing")
+  // console.log(user, "testing")
   // redirect to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     return <Redirect to="/profile" />;
@@ -41,46 +83,35 @@ const Profile = (props) => {
     );
   }
 
-  const handleClick = async () => {
-    try {
-      await addpost({
-        variables: { id: user._id },
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  // const handleClick = async () => {
+  //   try {
+  //     await addpost({
+  //       variables: { id: user._id },
+  //     });
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
 
   return (
     <div>
       <div className="flex-row mb-3">
         <h2 className="bg-dark text-secondary p-3 display-inline-block">
-          Viewing {userParam ? `${user.username}'s` : "your"} profile.
+          Viewing {`${user.username}'s`} profile.
         </h2>
 
-        {userParam && (
-          <button className="btn ml-auto" onClick={handleClick}>
-            Add Friend
-          </button>
-        )}
       </div>
 
       <div className="flex-row justify-space-between mb-3">
         <div className="col-12 mb-3 col-lg-8">
-          <SocialGroup // instead of this you can just map the groups returned by the query into a list element
+          <ProfileGroups // instead of this you can just map the groups returned by the query into a list element
             groups={user.groups}
-            title={`${user.username}'s groups...`}
+            title={`${user.username}'s Groups...`}
           />
         </div>
 
-        <div className="col-12 col-lg-3 mb-3">
-          <PersonalList // might be clitter to have this but same thing here
-            username={user.username}
-            posts={user.posts}
-          />
-        </div>
       </div>
-      {/* <div className="mb-3">{!userParam && <GroupForm />}</div> */}
+
     </div>
   );
 };
