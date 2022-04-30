@@ -41,10 +41,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App(props) {
+function App() {
             
   
   return (
+    
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
