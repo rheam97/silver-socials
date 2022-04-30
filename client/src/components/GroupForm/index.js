@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_GROUP } from "../../utils/mutations";
-import { QUERY_GROUPS, QUERY_ME, QUERY_INTERESTS} from "../../utils/queries";
+import { QUERY_GROUPS, QUERY_ME, QUERY_INTERESTS, QUERY_INTEREST} from "../../utils/queries";
 
 const GroupForm = () => {
   const [groupName, setName] = useState("");
@@ -11,8 +11,7 @@ const GroupForm = () => {
   const [textCharacterCount, setTextCharacterCount] = useState(0);
   const{loading, data}= useQuery(QUERY_INTERESTS)
   const interests = data?.interests || []
-  let {name} = interests
-console.log(interests)
+  const {name} = interests
 
 
   const [addGroup, { error }] = useMutation(ADD_GROUP, {
@@ -28,7 +27,12 @@ console.log(interests)
       } catch (e) {
         console.error(e);
       }
-
+      // update interest object cache******
+      const {interest} = cache.readQuery({query: QUERY_INTEREST})
+      cache.writeQuery({
+        query: QUERY_INTEREST,
+        data: {interest: {...interest, groups: [...interest.groups, addGroup]}}
+      })
       // update me object's cache
       const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
@@ -37,6 +41,7 @@ console.log(interests)
       });
     },
   });
+  console.log(error)
 
   // update state based on form input changes
   const handleTextChange = (event) => {
@@ -73,7 +78,7 @@ console.log(interests)
   return (
     <div>
       <p
-        className={`m-0 ${textCharacterCount ===700 || nameCharacterCount === 280 || error ? "text-error" : ""}`}
+        className={`m-0 ${textCharacterCount ===700 && nameCharacterCount === 280 || error ? "text-error" : ""}`}
       >
         {nameCharacterCount}/280 | {textCharacterCount}/700
         {error && <span className="ml-2">Something went wrong...</span>}
