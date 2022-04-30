@@ -3,6 +3,13 @@
 import React from "react";
 import { Redirect, useParams } from "react-router-dom";
 
+import GroupForm from "../components/GroupForm/index";
+import SocialGroup from "../components/InterestMenu";
+import PersonalList from "../components/GroupList";
+import Posts from "../components/Post";
+
+import { useQuery, useMutation } from "@apollo/client";
+=======
 import ProfileGroups from "../components/ProfileGroups";
 import { useQuery} from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
