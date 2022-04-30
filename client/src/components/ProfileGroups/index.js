@@ -13,7 +13,7 @@ const GroupList = ({ groups, title }) => {
                 groups.map(group => (
                     <div key={group._id} className="card mb-3">
                         <p className="card-header">
-                            <Link
+                            <Link // what does this mean??
                                 to={`/profile/${group.username}`}
                                 style={{ fontWeight: 700 }}
                                 className="text-light"

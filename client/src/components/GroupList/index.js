@@ -78,9 +78,7 @@ function GroupList() {
               key={group._id}
               _id={group._id}
               name={group.name}
-              description={group.description}
               members={group.members}
-              posts={group.posts}
             />
           ))}
         </div>

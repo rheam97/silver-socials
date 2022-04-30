@@ -11,32 +11,47 @@ import {QUERY_ME, QUERY_GROUP} from '../../utils/queries'
 // import { idbPromise } from "../../utils/helpers";
 
 function GroupItem(group) {
-  //const [state, dispatch] = useStoreContext();
 
-  const { description, name, _id, members, posts } = group;
+  const { name, _id, members} = group;
+  // const [joinGroup] = useMutation(JOIN_GROUP)
+// do i need to add cache?????
 
-  //const { cart } = state
+const [joinGroup, { error }] = useMutation(JOIN_GROUP, {
+  // update(cache, { data: { joinGroup } }) {
+  //   try {
+  //     // update group array's cache
+  //     // could potentially not exist yet, so wxrap in a try/catch
+  //     //not sure about this because mutation returns interest?
+  //     const { group } = cache.readQuery({ query: QUERY_GROUP });
+  //     cache.writeQuery({
+  //       query: QUERY_GROUP,
+  //       data: { group: [...group, members: [...group.members, joinGroup]] },
+  //     });
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  //   // update me object's cache
+  //   // not sure about this because mutation returns interest?
+  //   const { me } = cache.readQuery({ query: QUERY_ME });
+  //   cache.writeQuery({
+  //     query: QUERY_ME,
+  //     data: { me: { ...me, groups: [...me.groups, joinGroup] } },
+  //   });
+  // },
+});
 
-  const addMember = () => {
+  const joinAsMember = async() => {
+
+    try {
+      await joinGroup({
+        variables: { groupId: group._id },
+      });
+      console.log(group);
+    } catch (e) {
+      console.error(e);
+    }
    
-    //const itemInCart = cart.find((cartItem) => cartItem._id === _id)
-    //if (itemInCart) {
-    // dispatch({
-    //   type: UPDATE_CART_QUANTITY,
-    //   _id: _id,
-    //   purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
-    // });
-    //   idbPromise('cart', 'put', {
-    //     ...itemInCart,
-    //     purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
-    //   });
-    // } else {
-    //   dispatch({
-    //     type: ADD_TO_CART,
-    //     product: { ...item, purchaseQuantity: 1 }
-    //   });
-    //   idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
-    // }
+ 
   };
 
   return (
@@ -46,12 +61,9 @@ function GroupItem(group) {
         <p>{name}</p>
       </Link>
       <div>
-        <div>
-          {/* {quantity} {pluralize("item", quantity)} in stock */}
-        </div>
         <span>{members.length} <span>{members.length===1 ? <span>Member</span> : <span>Members</span> }</span></span>
       </div>
-      <button onClick={addMember}>Join this Group Now</button>
+      <button onClick={joinAsMember}>Join this Group Now</button>
     </div>
   );
 }
