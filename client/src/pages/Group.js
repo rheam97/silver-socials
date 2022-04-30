@@ -30,7 +30,7 @@ const SingleGroup = (props) => {
       <div className="card mb-3">
         <p className="card-header">
           <span style={{ fontWeight: 700 }} className="text-light">
-            Group for {group.name}
+            {group.name}
           </span>{" "}
           {group.member}
         </p>
@@ -40,9 +40,9 @@ const SingleGroup = (props) => {
       </div>
       <div>
         {<PostList posts={group.posts} />}
-        {<GroupItem />}
+        {/* {<GroupItem />} */}
         {<PostForm />}
-        {Auth.loggedIn() && <GroupForm groupId={group._id} />}
+        {/* {Auth.loggedIn() && <GroupForm groupId={group._id} />} */}
       </div>
     </>
   );

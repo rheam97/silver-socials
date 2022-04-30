@@ -14,11 +14,11 @@ const GroupList = ({ groups, title }) => {
                     <div key={group._id} className="card mb-3">
                         <p className="card-header">
                             <Link // what does this mean??
-                                to={`/profile/${group.username}`}
+                                to={`/group/${group._id}`}
                                 style={{ fontWeight: 700 }}
                                 className="text-light"
                             >
-                                {group.username}
+                                {group.name}
                             </Link>{' '}
                         </p>
                         {/* <div className="card-body">

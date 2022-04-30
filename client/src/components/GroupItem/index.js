@@ -31,7 +31,6 @@ const [joinGroup, { error }] = useMutation(JOIN_GROUP, {
   //     console.error(e);
   //   }
   //   // update me object's cache
-  //   // not sure about this because mutation returns interest?
   //   const { me } = cache.readQuery({ query: QUERY_ME });
   //   cache.writeQuery({
   //     query: QUERY_ME,
