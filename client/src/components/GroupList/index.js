@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import React, { useEffect } from "react";
 import GroupItem from "../GroupItem";
 import { useHomeContext } from "../../utils/HomeStore";
-import { UPDATE_GROUPS, GET_GROUPS } from "../../utils/actions";
+import { UPDATE_GROUPS, GET_GROUPS, FILTER_GROUPS } from "../../utils/actions";
 import { useQuery } from "@apollo/client";
-import { QUERY_GROUPS} from "../../utils/queries";
+import { QUERY_GROUPS } from "../../utils/queries";
 
 // import { idbPromise } from "../../utils/helpers";
 import spinner from "../../assets/spinner.gif";
@@ -45,42 +45,46 @@ function GroupList() {
   //let newinterestFilters= [...state.interestFilters, action.interestFilter]
   //let newVisibleGroups = []
   //interest.forEach(i=>
+
   //newInterestFilter.includes(i)? newVisibleGroups.concat(i.groups))[...state.allGroups.filter((i)=> {return newinterestFilters.includes(i.groups}]
-  function filterGroupsbyInterest() {
+  useEffect(() => {
     if (!currentInterest) {
       return state.groups;
     }
-    let filteredGroups
+    let newFilteredGroups;
     state.interests.forEach((i) =>
-      i.name === currentInterest ?  filteredGroups=i.groups : null
-    )
-    console.log('these r the filtered groups', filteredGroups)
+      i.name === currentInterest ? (newFilteredGroups = i.groups) : null
+    );
+    // console.log('these r the filtered groups', filteredGroups)
+    console.log("these r the new filteredGroups", newFilteredGroups);
 
-
- 
-    
-    return state.groups =filteredGroups
+    return dispatch({
+      type: FILTER_GROUPS,
+      groups: newFilteredGroups,
+    });
 
     //when currentInterest exists
     // ***if the interests on the state has the currentinterest as a name,
     // return that interests' groups
-
-  }
-
+  },[currentInterest]);
 
   return (
     <div className="my-2">
       <h2>Groups for {currentInterest}:</h2>
       {state.groups.length ? (
         <div className="flex-row">
-          {filterGroupsbyInterest().map((group) => (
-            <GroupItem
-              key={group._id}
-              _id={group._id}
-              name={group.name}
-              members={group.members}
-            />
-          ))}
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            state.groups.map((group) => (
+              <GroupItem
+                key={group._id}
+                _id={group._id}
+                name={group.name}
+                members={group.members}
+              />
+            ))
+          )}
         </div>
       ) : (
         <h3>No groups added under this interest yet!</h3>

@@ -3,7 +3,7 @@ import {
   UPDATE_GROUPS,
   UPDATE_INTERESTS,
   UPDATE_CURRENT_INTEREST,
-  ADD_TO_INTEREST,
+  FILTER_GROUPS,
 } from "./actions";
 
 // GET_INTERESTS
@@ -33,10 +33,10 @@ export const reducer = (state, action) => {
         ...state,
         currentInterest: action.currentInterest,
       };
-    case ADD_TO_INTEREST: // not sure about this one for adding group??
+    case FILTER_GROUPS: // not sure about this one for adding group??
       return {
         ...state,
-        interests: [...state.interests.interests.groups, ...action.groups]
+        groups: [...action.groups]
       };
     default:
       return state;

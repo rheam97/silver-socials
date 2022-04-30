@@ -15,6 +15,7 @@ function GroupItem(group) {
   const { name, _id, members} = group;
   // const [joinGroup] = useMutation(JOIN_GROUP)
 // do i need to add cache?????
+// console.log(members)
 
 const [joinGroup, { error }] = useMutation(JOIN_GROUP, {
   // update(cache, { data: { joinGroup } }) {

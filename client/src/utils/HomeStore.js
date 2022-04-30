@@ -9,6 +9,7 @@ const HomeProvider = ({value=[], ...props})=> {
         interests: [],
         groups: [],
         currentInterest: '',
+        filteredGroups: [],
     })
     console.log(state)
 
