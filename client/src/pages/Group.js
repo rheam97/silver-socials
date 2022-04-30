@@ -1,6 +1,6 @@
 // group name and  description, number of members, posts, join button
 
-import React from "react";
+import React, {useEffect} from "react";
 import { useParams } from "react-router-dom";
 
 import PostList from "../components/Post";
@@ -25,6 +25,7 @@ const SingleGroup = (props) => {
     return <div>Loading...</div>;
   }
 
+ 
   return (
     <>
       <div className="card mb-3">
