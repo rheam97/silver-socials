@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 // import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 // import { idbPromise } from "../../utils/helpers";
 
-function GroupItem(item) {
+function GroupItem(group) {
   //const [state, dispatch] = useStoreContext();
 
-  const { image, name, _id, price, quantity } = item;
+  const { description, name, _id, members, posts } = group;
 
   //const { cart } = state
 
@@ -45,7 +45,7 @@ function GroupItem(item) {
         <div>
           {/* {quantity} {pluralize("item", quantity)} in stock */}
         </div>
-        <span>200 Members</span>
+        <span>{members.length} <span>{members.length===1 ? <span>Member</span> : <span>Members</span> }</span></span>
       </div>
       <button onClick={addMember}>Join this Group Now</button>
     </div>
