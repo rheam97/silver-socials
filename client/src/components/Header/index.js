@@ -20,7 +20,7 @@ const Header = () => {
 
 
   return (
-    <div className='w-screen h-[120px] mt-6 z-10fixed drop-shadow-lg'>
+    <div className='w-screen h-[80px] mt-6 z-10fixed drop-shadow-lg'>
 
       <nav className="text-center">
         {AuthService.loggedIn() ? (

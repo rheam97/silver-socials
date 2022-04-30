@@ -11,6 +11,7 @@ import { QUERY_GROUPS, QUERY_INTERESTS, QUERY_INTEREST } from "../utils/queries"
 import InterestMenu from "../components/InterestMenu";
 // import {HomeProvider} from '../utils/HomeStore'
 import Header from '../components/Header';
+import Hero from '../components/Hero';
 import {HomeProvider} from '../utils/HomeStore'
 
 const Home = () => {
@@ -21,11 +22,12 @@ const Home = () => {
   const loggedIn = Auth.loggedIn();
 
   return (
-    <main>
+    <main className='w-screen'>
     <Header />
+    <Hero />
       {/* <HomeProvider> */}
       <div className="flex-row justify-space-between">
-        <div>
+        <div className="absolute">
           <GroupList/>
           <GroupForm/>
       </div>
