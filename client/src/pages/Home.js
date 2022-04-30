@@ -9,6 +9,9 @@ import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
 import { QUERY_GROUPS, QUERY_INTERESTS, QUERY_INTEREST } from "../utils/queries";
 import InterestMenu from "../components/InterestMenu";
+// import {HomeProvider} from '../utils/HomeStore'
+import Header from '../components/Header';
+=======
 import {HomeProvider} from '../utils/HomeStore'
 
 const Home = () => {
@@ -20,6 +23,8 @@ const Home = () => {
 
   return (
     <main>
+    <Header />
+      {/* <HomeProvider> */}
       <div className="flex-row justify-space-between">
         <div>
           <GroupList/>
@@ -29,6 +34,7 @@ const Home = () => {
           <InterestMenu /> 
         </div>
       </div>
+      {/* </HomeProvider> */}
     </main>
   );
 };

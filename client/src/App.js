@@ -41,12 +41,18 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
+function App(props) {
+            
+  
   return (
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
+        {/* hide header when url on signup page */}
+          {/* {
+          props.location.pathname!=='/signup' ? <Header/>:null
+          } */}
+          {/* <Header /> */}
           <div className="container">
             <Switch>
               <Route exact path="/" component={Home} />
@@ -61,7 +67,7 @@ function App() {
               <Route component={NoMatch} />
             </Switch>
           </div>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     </ApolloProvider>
