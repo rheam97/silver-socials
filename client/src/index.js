@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import {HomeProvider} from './utils/HomeStore'
 //import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+     <HomeProvider>
     <App />
+    </HomeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )
