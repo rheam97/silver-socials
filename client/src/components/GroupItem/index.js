@@ -1,5 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+import {JOIN_GROUP} from '../../utils/mutations'
+import { useQuery, useMutation } from "@apollo/client";
+import {QUERY_ME, QUERY_GROUP} from '../../utils/queries'
 //import GroupItem from "../../components/GroupItem";
 // import { pluralize } from "../../utils/helpers";
 //import { useStoreContext } from "../../utils/GlobalState";

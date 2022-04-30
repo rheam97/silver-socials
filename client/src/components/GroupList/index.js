@@ -6,9 +6,9 @@ import React, { useEffect } from "react";
 import GroupItem from "../GroupItem";
 import { useHomeContext } from "../../utils/HomeStore";
 import { UPDATE_GROUPS, GET_GROUPS } from "../../utils/actions";
-import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_GROUPS, QUERY_ME } from "../../utils/queries";
-import {JOIN_GROUP} from '../../utils/mutations'
+import { useQuery } from "@apollo/client";
+import { QUERY_GROUPS} from "../../utils/queries";
+
 // import { idbPromise } from "../../utils/helpers";
 import spinner from "../../assets/spinner.gif";
 
