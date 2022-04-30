@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { ADD_GROUP } from "../../utils/mutations";
-import { QUERY_GROUPS, QUERY_ME } from "../../utils/queries";
+import { QUERY_GROUPS, QUERY_ME, QUERY_INTERESTS} from "../../utils/queries";
 
 const GroupForm = () => {
+  const [groupName, setName] = useState("");
   const [groupText, setText] = useState("");
-  const [characterCount, setCharacterCount] = useState(0);
+  const [nameCharacterCount, setNameCharacterCount] = useState(0);
+  const [textCharacterCount, setTextCharacterCount] = useState(0);
+  const{loading, data}= useQuery(QUERY_INTERESTS)
+  const interests = data?.interests || []
+  let {name} = interests
+console.log(interests)
+
 
   const [addGroup, { error }] = useMutation(ADD_GROUP, {
     update(cache, { data: { addGroup } }) {
       try {
         // update group array's cache
-        // could potentially not exist yet, so wrap in a try/catch
+        // could potentially not exist yet, so wxrap in a try/catch
         const { groups } = cache.readQuery({ query: QUERY_GROUPS });
         cache.writeQuery({
           query: QUERY_GROUPS,
@@ -32,25 +39,32 @@ const GroupForm = () => {
   });
 
   // update state based on form input changes
-  const handleChange = (event) => {
-    if (event.target.value.length <= 280) {
+  const handleTextChange = (event) => {
+    if (event.target.value.length <= 700) {
       setText(event.target.value);
-      setCharacterCount(event.target.value.length);
+      setTextCharacterCount(event.target.value.length);
+    }
+  };
+  const handleNameChange = (event) => {
+    if (event.target.value.length <= 280) {
+      setName(event.target.value);
+      setNameCharacterCount(event.target.value.length);
     }
   };
 
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     try {
       await addGroup({
-        variables: { groupText },
+        variables: { name, input: {groupName, groupText} },
       });
 
       // clear form value
       setText("");
-      setCharacterCount(0);
+      setName("")
+      setTextCharacterCount(0);
+      setNameCharacterCount(0);
     } catch (e) {
       console.error(e);
     }
@@ -59,21 +73,32 @@ const GroupForm = () => {
   return (
     <div>
       <p
-        className={`m-0 ${characterCount === 280 || error ? "text-error" : ""}`}
+        className={`m-0 ${textCharacterCount ===700 || nameCharacterCount === 280 || error ? "text-error" : ""}`}
       >
-        Character Count: {characterCount}/280
+        {nameCharacterCount}/280 | {textCharacterCount}/700
         {error && <span className="ml-2">Something went wrong...</span>}
       </p>
       <form
         className="flex-row justify-center justify-space-between-md align-stretch"
         onSubmit={handleFormSubmit}
       >
+         <textarea
+          placeholder="New group name..."
+          value={groupName}
+          className="form-input col-12 col-md-9"
+          onChange={handleNameChange}
+        ></textarea>
         <textarea
-          placeholder="Here's a new group..."
+          placeholder="New group description..."
           value={groupText}
           className="form-input col-12 col-md-9"
-          onChange={handleChange}
+          onChange={handleTextChange}
         ></textarea>
+        <select>
+        {interests.map(({name})=> (
+          <option key={name} value={name}>{name}</option>
+        ))}
+        </select>
         <button className="btn col-12 col-md-3" type="submit">
           Submit
         </button>
