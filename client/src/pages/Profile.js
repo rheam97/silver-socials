@@ -9,9 +9,7 @@ import PersonalList from "../components/GroupList";
 import Posts from "../components/Post";
 
 import { useQuery, useMutation } from "@apollo/client";
-=======
 import ProfileGroups from "../components/ProfileGroups";
-import { useQuery} from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import Auth from "../utils/auth";
 

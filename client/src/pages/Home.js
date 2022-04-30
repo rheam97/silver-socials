@@ -11,7 +11,6 @@ import { QUERY_GROUPS, QUERY_INTERESTS, QUERY_INTEREST } from "../utils/queries"
 import InterestMenu from "../components/InterestMenu";
 // import {HomeProvider} from '../utils/HomeStore'
 import Header from '../components/Header';
-=======
 import {HomeProvider} from '../utils/HomeStore'
 
 const Home = () => {
