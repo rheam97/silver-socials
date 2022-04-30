@@ -1,59 +1,88 @@
-
 import { gql } from "@apollo/client";
 
 export const QUERY_INTERESTS = gql`
-   query Interests {
-  interests {
-    name
-    groups {
+  query Interests {
+    interests {
       name
-      _id
-      description
+      groups {
+        name
+        _id
+        description
+         posts {
+        _id
+        postText
+        createdAt
+        username
+      }
+        members {
+          _id
+          username
+        }
+      }
     }
   }
-}
- `
+`;
 export const QUERY_INTEREST = gql`
-query Interest($name: String!) {
-  interest(name: $name) {
-    name
-    groups {
+  query Interest($name: String!) {
+    interest(name: $name) {
+      name
+      groups {
+        name
+        description
+        _id
+      }
+    }
+  }
+`;
+export const QUERY_GROUPS = gql`
+  query GetGroups {
+    getallgroups {
+      _id
       name
       description
-      _id
+      members {
+        _id
+        username
+      }
+      posts {
+        _id
+        postText
+        createdAt
+        username
+      }
     }
   }
-}
-`
-export const QUERY_GROUPS = gql`
-query GetGroups {
-  getallgroups {
-    _id
-    name
-    description
-    members {
-      _id
-      username
-    }
-    posts {
-      _id
-      postText
-      createdAt
-      username
-    }
-  }
-}
-
 `;
 
-
 export const QUERY_GROUP = gql`
- query Group($id: ID!) {
-  group(_id: $id) {
-    _id
-    name
-    description
-    members {
+  query Group($id: ID!) {
+    group(_id: $id) {
+      _id
+      name
+      description
+      members {
+        _id
+        username
+        posts {
+          _id
+          postText
+          createdAt
+          username
+        }
+      }
+      posts {
+        _id
+        postText
+        createdAt
+        username
+      }
+    }
+  }
+`;
+
+export const QUERY_USER = gql`
+  query User($username: String!) {
+    user(username: $username) {
       _id
       username
       posts {
@@ -62,67 +91,42 @@ export const QUERY_GROUP = gql`
         createdAt
         username
       }
-    }
-    posts {
-      _id
-      postText
-      createdAt
-      username
-    }
-  }
-}
-`;
-
-export const QUERY_USER = gql`
- query User($username: String!) {
-  user(username: $username) {
-    _id
-    username
-    posts {
-      _id
-      postText
-      createdAt
-      username
-    }
-    groups {
-      _id
-      name
-      description
+      groups {
+        _id
+        name
+        description
+      }
     }
   }
-}
 `;
 
 export const QUERY_ME = gql`
- query Me {
-  me {
-    _id
-    username
-    email
-    posts {
+  query Me {
+    me {
       _id
-      postText
-      createdAt
       username
-    }
-    groups {
-      _id
-      name
-      description
+      email
+      posts {
+        _id
+        postText
+        createdAt
+        username
+      }
+      groups {
+        _id
+        name
+        description
+      }
     }
   }
-}
 `;
 
 export const QUERY_ME_BASIC = gql`
- query Me {
-  me {
-    _id
-    username
-    email
+  query Me {
+    me {
+      _id
+      username
+      email
     }
-    }
+  }
 `;
-
-
-

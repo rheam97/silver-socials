@@ -11,7 +11,7 @@ const PostList = ({ posts }) => {
         {posts &&
           posts.map(post => (
             <p className="pill mb-3" key={post._id}>
-              {post.postBody} //{' '}
+              {post.postText} {' '}
               <Link to={`/profile/${post.username}`} style={{ fontWeight: 700 }}>
                 {post.username} on {post.createdAt}
               </Link>

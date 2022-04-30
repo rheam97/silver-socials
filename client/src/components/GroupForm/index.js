@@ -2,23 +2,28 @@ import React, { useState } from "react";
 
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_GROUP } from "../../utils/mutations";
-import { QUERY_GROUPS, QUERY_ME, QUERY_INTERESTS, QUERY_INTEREST} from "../../utils/queries";
+import {
+  QUERY_GROUPS,
+  QUERY_ME,
+  QUERY_INTERESTS,
+  QUERY_INTEREST,
+} from "../../utils/queries";
 
 const GroupForm = () => {
   const [groupName, setName] = useState("");
   const [groupText, setText] = useState("");
   const [nameCharacterCount, setNameCharacterCount] = useState(0);
   const [textCharacterCount, setTextCharacterCount] = useState(0);
-  const{loading, data}= useQuery(QUERY_INTERESTS)
-  const interests = data?.interests || []
-  const {name} = interests
-
+  const { loading, data } = useQuery(QUERY_INTERESTS);
+  const interests = data?.interests || [];
+  let name;
 
   const [addGroup, { error }] = useMutation(ADD_GROUP, {
     update(cache, { data: { addGroup } }) {
       try {
         // update group array's cache
         // could potentially not exist yet, so wxrap in a try/catch
+        //not sure about this because mutation returns interest?
         const { groups } = cache.readQuery({ query: QUERY_GROUPS });
         cache.writeQuery({
           query: QUERY_GROUPS,
@@ -27,13 +32,16 @@ const GroupForm = () => {
       } catch (e) {
         console.error(e);
       }
-      // update interest object cache******
-      const {interest} = cache.readQuery({query: QUERY_INTEREST})
+      // update interest object cache****** alos how to query for specific interest?
+      const { interest } = cache.readQuery({ query: QUERY_INTEREST });
       cache.writeQuery({
         query: QUERY_INTEREST,
-        data: {interest: {...interest, groups: [...interest.groups, addGroup]}}
-      })
+        data: {
+          interest: { ...interest, groups: [...interest.groups, addGroup] },
+        },
+      });
       // update me object's cache
+      // not sure about this because mutation returns interest?
       const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
         query: QUERY_ME,
@@ -41,7 +49,6 @@ const GroupForm = () => {
       });
     },
   });
-  console.log(error)
 
   // update state based on form input changes
   const handleTextChange = (event) => {
@@ -62,12 +69,12 @@ const GroupForm = () => {
     event.preventDefault();
     try {
       await addGroup({
-        variables: { name, input: {groupName, groupText} },
+        variables: { name, input: { name: groupName, description: groupText } },
       });
 
       // clear form value
       setText("");
-      setName("")
+      setName("");
       setTextCharacterCount(0);
       setNameCharacterCount(0);
     } catch (e) {
@@ -78,7 +85,11 @@ const GroupForm = () => {
   return (
     <div>
       <p
-        className={`m-0 ${textCharacterCount ===700 && nameCharacterCount === 280 || error ? "text-error" : ""}`}
+        className={`m-0 ${
+          (textCharacterCount === 700 && nameCharacterCount === 280) || error
+            ? "text-error"
+            : ""
+        }`}
       >
         {nameCharacterCount}/280 | {textCharacterCount}/700
         {error && <span className="ml-2">Something went wrong...</span>}
@@ -87,7 +98,7 @@ const GroupForm = () => {
         className="flex-row justify-center justify-space-between-md align-stretch"
         onSubmit={handleFormSubmit}
       >
-         <textarea
+        <textarea
           placeholder="New group name..."
           value={groupName}
           className="form-input col-12 col-md-9"
@@ -100,9 +111,11 @@ const GroupForm = () => {
           onChange={handleTextChange}
         ></textarea>
         <select>
-        {interests.map(({name})=> (
-          <option key={name} value={name}>{name}</option>
-        ))}
+          {interests.map(({ name }) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
         </select>
         <button className="btn col-12 col-md-3" type="submit">
           Submit

@@ -19,6 +19,7 @@ function InterestMenu() {
   const [state, dispatch] = useHomeContext();
 
   const { interests } = state;
+  console.log(interests)
 
   const { loading, error, data} = useQuery(QUERY_INTERESTS);
 

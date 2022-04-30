@@ -1,6 +1,6 @@
 // group name and  description, number of members, posts, join button
 
-import React from "react";
+import React, {useEffect} from "react";
 import { useParams } from "react-router-dom";
 
 import PostList from "../components/Post";
@@ -25,12 +25,13 @@ const SingleGroup = (props) => {
     return <div>Loading...</div>;
   }
 
+ 
   return (
     <>
       <div className="card mb-3">
         <p className="card-header">
           <span style={{ fontWeight: 700 }} className="text-light">
-            Group for {group.name}
+            {group.name}
           </span>{" "}
           {group.member}
         </p>
@@ -40,9 +41,9 @@ const SingleGroup = (props) => {
       </div>
       <div>
         {<PostList posts={group.posts} />}
-        {<GroupItem />}
+        {/* {<GroupItem />} */}
         {<PostForm />}
-        {Auth.loggedIn() && <GroupForm groupId={group._id} />}
+        {/* {Auth.loggedIn() && <GroupForm groupId={group._id} />} */}
       </div>
     </>
   );
