@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 const GroupList = ({ groups, title }) => {
     if (!groups.length) {
         return <h3>No Groups Joined Yet!</h3>;
     }
 
     return (
+
         <div>
             <h3>{title}</h3>
             {groups &&

@@ -69,6 +69,7 @@ function GroupList() {
   },[currentInterest]);
 
   return (
+    
     <div className="my-2">
       <h2>Groups for {currentInterest}:</h2>
       {state.groups.length ? (

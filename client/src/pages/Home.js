@@ -11,6 +11,10 @@ import { QUERY_GROUPS, QUERY_INTERESTS, QUERY_INTEREST } from "../utils/queries"
 import InterestMenu from "../components/InterestMenu";
 // import {HomeProvider} from '../utils/HomeStore'
 import Header from '../components/Header';
+import Footer from '../components/Footer';
+import ImageCards from '../components/ImageCards';
+
+import Hero from '../components/Hero';
 import {HomeProvider} from '../utils/HomeStore'
 
 const Home = () => {
@@ -21,19 +25,23 @@ const Home = () => {
   const loggedIn = Auth.loggedIn();
 
   return (
-    <main>
+    <main className='w-screen'>
     <Header />
+    <Hero />
       {/* <HomeProvider> */}
-      <div className="flex-row justify-space-between">
+      <div className="mt-10 flex-row justify-space-between w-[70%] mx-auto">
         <div>
           <GroupList/>
           <GroupForm/>
       </div>
       <div className="col-12 mb-3">
           <InterestMenu /> 
+          <ImageCards />
+          
         </div>
       </div>
       {/* </HomeProvider> */}
+      <Footer />
     </main>
   );
 };

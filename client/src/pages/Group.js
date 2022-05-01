@@ -11,6 +11,7 @@ import GroupItem from "../components/GroupItem";
 import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
 import { QUERY_GROUP } from "../utils/queries";
+import spinner from '../assets/spinner.gif'
 
 const SingleGroup = (props) => {
   const { id: groupId } = useParams();
@@ -22,7 +23,7 @@ const SingleGroup = (props) => {
   const group = data?.group || {};
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>{spinner}Loading...</div>;
   }
 
  
