@@ -15,6 +15,9 @@ const groupSchema = new Schema({
     minlength: 1,
     maxlength: 500,
   },
+  image: {
+    type: String
+  },
   members: [
     {
       type: Schema.Types.ObjectId,

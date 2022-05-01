@@ -83,6 +83,7 @@ function GroupList() {
                 _id={group._id}
                 name={group.name}
                 members={group.members}
+                image={group.image}
               />
             ))
           )}

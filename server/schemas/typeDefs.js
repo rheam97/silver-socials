@@ -5,16 +5,19 @@ const typeDefs = gql`
     _id: ID
     name: String
     description: String
+    image: String
     members: [User]
     posts: [Post]
   }
   input addThisGroup {
     name: String!
     description: String!
+    image: String
   }
   type User {
     _id: ID
     username: String
+    image: String
     email: String
     posts: [Post]
     groups: [Group]
@@ -51,7 +54,7 @@ const typeDefs = gql`
   }
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, image: String, password: String!): Auth
     addGroup(input: addThisGroup, name: String!): Interest
     addPost(postText: String!, groupId: ID!): AddPostResponse
     removePost(postId: ID!): AddPostResponse

@@ -15,9 +15,10 @@ db.once("open", async () => {
   for (let i = 0; i < 10; i += 1) {
     const username = faker.internet.userName();
     const email = faker.internet.email(username);
+    const image = faker.image.avatar();
     const password = faker.internet.password();
 
-    userData.push({ username, email, password });
+    userData.push({ username, email, image, password });
   }
 
   const createdUsers = await User.collection.insertMany(userData);
@@ -73,6 +74,7 @@ db.once("open", async () => {
       name: "Hiking",
       description:
         "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+      image: "https://cdn.pixabay.com/photo/2014/09/21/17/56/mountaineering-455338__340.jpg",
       members: [userData[0]._id],
       posts: [createdPosts[0]._id],
     },
@@ -80,6 +82,7 @@ db.once("open", async () => {
       name: "Skiing",
       description:
         "Praesent sed lacinia mauris. Nulla congue nibh magna, at feugiat nunc scelerisque quis. Donec iaculis rutrum vulputate. Suspendisse lectus sem, vulputate ac lectus sed, placerat consequat dui.",
+      image: "https://cdn.pixabay.com/photo/2016/11/18/15/40/boy-1835416__340.jpg",
       members: [userData[1]._id],
       posts: [createdPosts[1]._id],
     },
@@ -87,6 +90,7 @@ db.once("open", async () => {
       name: "Painting",
       description:
         "Donec volutpat erat erat, sit amet gravida justo sodales in. Phasellus tempus euismod urna. Proin ultrices nisi ut ipsum congue, vitae porttitor libero suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam lacinia a nisi non congue.",
+      image: "https://cdn.pixabay.com/photo/2017/07/03/20/17/colorful-2468874__340.jpg",
       members: [userData[2]._id],
       posts: [createdPosts[2]._id],
     },
@@ -94,6 +98,7 @@ db.once("open", async () => {
       name: "Sculpture",
       description:
         "Praesent placerat, odio vel euismod venenatis, lectus arcu laoreet felis, et fringilla sapien turpis vestibulum nisl.",
+      image: "https://cdn.pixabay.com/photo/2019/07/05/10/36/statue-4318277_960_720.jpg",
       members: [userData[3]._id],
       posts: [createdPosts[3]._id],
     },
@@ -101,6 +106,7 @@ db.once("open", async () => {
       name: "Bars",
       description:
         "Vivamus ut turpis in purus pretium mollis. Donec turpis odio, semper vel interdum ut, vulputate at ex. Duis dignissim nisi vel tortor imperdiet finibus. Aenean aliquam sagittis rutrum.",
+      image: "https://cdn.pixabay.com/photo/2013/11/12/01/29/bar-209148__340.jpg",
       members: [userData[4]._id],
       posts: [createdPosts[4]._id],
     },
@@ -108,43 +114,53 @@ db.once("open", async () => {
       name: "Book club",
       description:
         "Vestibulum risus metus, luctus non tortor quis, tincidunt consectetur ex. Nullam vitae lobortis ligula, ut sagittis massa. Curabitur consectetur, tellus at pulvinar venenatis, erat augue cursus erat, eu ullamcorper eros lectus ultrices ipsum. Integer rutrum, augue vitae auctor venenatis, turpis turpis elementum orci, at sagittis risus mi a leo.",
+      image: "https://cdn.pixabay.com/photo/2015/09/04/16/09/books-922321_960_720.jpg",
       members: [userData[5]._id],
       posts: [createdPosts[5]._id],
     },
     {
       name: "Food pantry",
-      description: "In sodales, ipsum quis ultricies porttitor, tellus urna aliquam arcu, eget venenatis purus ligula ut nisi. Fusce ut felis dolor. Mauris justo ante, aliquet non tempus in, tempus ac lorem. Aliquam lacinia dolor eu sem eleifend ultrices. Etiam mattis metus metus. Sed ligula dui, placerat non turpis vitae, suscipit volutpat elit. Phasellus sagittis, diam elementum suscipit fringilla, libero mauris scelerisque ex, ac interdum diam erat non sapien.",
+      description:
+        "In sodales, ipsum quis ultricies porttitor, tellus urna aliquam arcu, eget venenatis purus ligula ut nisi. Fusce ut felis dolor. Mauris justo ante, aliquet non tempus in, tempus ac lorem. Aliquam lacinia dolor eu sem eleifend ultrices. Etiam mattis metus metus. Sed ligula dui, placerat non turpis vitae, suscipit volutpat elit. Phasellus sagittis, diam elementum suscipit fringilla, libero mauris scelerisque ex, ac interdum diam erat non sapien.",
+      image: "https://cdn.pixabay.com/photo/2021/04/24/00/44/belief-6202974_960_720.jpg",
       members: [userData[6]._id],
-      posts: [createdPosts[6]._id]
+      posts: [createdPosts[6]._id],
     },
     {
       name: "Beach clean-up",
-      description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare diam quis eleifend rutrum. Aliquam nulla est, volutpat non enim nec, pharetra gravida augue. Donec vitae dictum neque. Pellentesque arcu lorem, fringilla non ligula ac, tristique bibendum erat. Ut a semper nibh. Quisque a mi et mi tempor ultricies. Maecenas eu ipsum eu enim hendrerit accumsan at euismod urna.",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare diam quis eleifend rutrum. Aliquam nulla est, volutpat non enim nec, pharetra gravida augue. Donec vitae dictum neque. Pellentesque arcu lorem, fringilla non ligula ac, tristique bibendum erat. Ut a semper nibh. Quisque a mi et mi tempor ultricies. Maecenas eu ipsum eu enim hendrerit accumsan at euismod urna.",
+      image: "https://cdn.pixabay.com/photo/2021/03/06/21/56/beach-cleaning-6074841_1280.jpg",
       members: [userData[7]._id],
-      posts: [createdPosts[7]._id]
+      posts: [createdPosts[7]._id],
     },
     {
       name: "Yoga",
-      description: "Ut vulputate hendrerit nibh, a placerat elit cursus interdum.",
+      description:
+        "Ut vulputate hendrerit nibh, a placerat elit cursus interdum.",
+      image: "https://cdn.pixabay.com/photo/2017/03/26/21/54/yoga-2176668_960_720.jpg",
       members: [userData[8]._id],
-      posts: [createdPosts[8]._id]
+      posts: [createdPosts[8]._id],
     },
     {
       name: "Walking",
-      description: "Sed a mauris condimentum, elementum enim in, rhoncus dui. Phasellus lobortis leo odio, sit amet pharetra turpis porta quis.",
+      description:
+        "Sed a mauris condimentum, elementum enim in, rhoncus dui. Phasellus lobortis leo odio, sit amet pharetra turpis porta quis.",
+      image: "https://cdn.pixabay.com/photo/2019/03/10/23/38/people-4047493_960_720.jpg",
       members: [userData[9]._id],
-      posts: [createdPosts[9]._id]
+      posts: [createdPosts[9]._id],
     },
   ]);
-  console.log('groups seeded')
+  console.log("groups seeded");
 
   // push groups into users
-  for (let i=0; i< userData.length; i++){
+  for (let i = 0; i < userData.length; i++) {
     await User.updateOne(
-      {_id: userData[i]._id},
-      {$push: {groups: groups[i]._id}})
+      { _id: userData[i]._id },
+      { $push: { groups: groups[i]._id } }
+    );
   }
-console.log('pushed groups into users')
+  console.log("pushed groups into users");
 
   // create interest data
   const interestData = [

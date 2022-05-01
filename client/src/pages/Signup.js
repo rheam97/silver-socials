@@ -53,6 +53,7 @@ const Signup = () => {
           Create Account
         </h1>
         <div className='form-inputs'>
+          {/* <---file input label to upload profile pic---> */}
           <label className='form-label'>Username</label>
           <input
             className='form-input'

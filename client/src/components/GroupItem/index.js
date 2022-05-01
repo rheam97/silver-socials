@@ -12,7 +12,7 @@ import {QUERY_ME, QUERY_GROUP} from '../../utils/queries'
 
 function GroupItem(group) {
 
-  const { name, _id, members} = group;
+  const { image, name, _id, members} = group;
   // const [joinGroup] = useMutation(JOIN_GROUP)
 // do i need to add cache?????
 // console.log(members)
@@ -57,7 +57,7 @@ const [joinGroup, { error }] = useMutation(JOIN_GROUP, {
   return (
     <div className="card px-1 py-1">
       <Link to={`/group/${_id}`}>
-        {/* <img alt={name} src={`/images/${image}`} /> */}
+        <img alt={name} src={`${image}`} />
         <p>{name}</p>
       </Link>
       <div>

@@ -114,8 +114,8 @@ const Profile = () => {
             />
             <img
               className="rounded-full border border-white w-40 h-40 -mt-20 shadow-xl object-cover"
-              // src={user.image}
-              src="https://source.unsplash.com/1600x900/?username"
+              src={user.image}
+              // src="https://source.unsplash.com/1600x900/?username"
               alt="user-pic"
             />
           </div>
