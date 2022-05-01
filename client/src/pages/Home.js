@@ -11,6 +11,8 @@ import { QUERY_GROUPS, QUERY_INTERESTS, QUERY_INTEREST } from "../utils/queries"
 import InterestMenu from "../components/InterestMenu";
 // import {HomeProvider} from '../utils/HomeStore'
 import Header from '../components/Header';
+import Footer from '../components/Footer';
+
 import Hero from '../components/Hero';
 import {HomeProvider} from '../utils/HomeStore'
 
@@ -27,7 +29,7 @@ const Home = () => {
     <Hero />
       {/* <HomeProvider> */}
       <div className="flex-row justify-space-between">
-        <div className="absolute">
+        <div>
           <GroupList/>
           <GroupForm/>
       </div>
@@ -36,6 +38,7 @@ const Home = () => {
         </div>
       </div>
       {/* </HomeProvider> */}
+      <Footer />
     </main>
   );
 };
