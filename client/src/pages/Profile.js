@@ -9,6 +9,7 @@ import PersonalList from "../components/GroupList";
 import Posts from "../components/Post";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import spinner from "../assets/spinner.gif";
 
 import { useQuery, useMutation } from "@apollo/client";
 import ProfileGroups from "../components/ProfileGroups";
@@ -78,7 +79,7 @@ const Profile = (props) => {
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>{spinner}Loading...</div>;
   }
 
   if (!user?.username) {

@@ -5,7 +5,7 @@ import heroImage from '../../assets/hero-image.png';
 
 const Hero = () => {
   return (
-    <div className='w-full h-screen bg-zinc-200 flex flex-col justify-between'>
+    <div className='w-full h-screen flex flex-col justify-between'>
         <div className='grid md:grid-cols-2 max-w-[1240px] m-auto'>
             <div className='flex flex-col justify-center md:items-start w-full px-12 py-8 font-[Poppins]'>
                 <h1 className='py-3 text-5xl md:text-7xl font-bold'>Silver Socials</h1>

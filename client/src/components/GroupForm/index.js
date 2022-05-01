@@ -83,7 +83,7 @@ const GroupForm = () => {
   };
 
   return (
-    <div>
+    <div className="flex w-full">
       <p
         className={`m-0 ${
           (textCharacterCount === 700 && nameCharacterCount === 280) || error
@@ -117,7 +117,7 @@ const GroupForm = () => {
             </option>
           ))}
         </select>
-        <button className="btn col-12 col-md-3" type="submit">
+        <button className='text-center mt-12 py-3 px-6 w-[45%] md:w-[45%] lg:w-[40%] my-4 bg-cyan-600 rounded-full text-white hover:bg-cyan-900 duration-500' type="submit">
           Submit
         </button>
       </form>

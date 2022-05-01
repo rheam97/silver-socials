@@ -7,7 +7,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
-
+import Search from '../Search'
 
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
@@ -17,6 +17,9 @@ const Header = () => {
     AuthService.logout();
 
   };
+
+  // serach bar
+  const [term, setTerm] = useState('');
 
   const [nav, setNav] = useState(false)
   const handleClick = () => setNav(!nav)
@@ -37,8 +40,6 @@ const Header = () => {
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     return <Redirect to="/profile" />;
   }
-
-
     
   return (
     // <div className='w-screen h-[80%] z-10 bg-white drop-shadow-lg'>
@@ -65,6 +66,19 @@ const Header = () => {
                   <li><Link to="/donation" className="text-gray-800 hover:text-gray-400 duration-500 px-2 py-3">Donation</Link></li>
                 </ul>
               </div>
+              <Search searchText={(text) => setTerm(text)} />
+
+              {/* search engine */}
+              {/* <label class="relative block">
+                <span class="sr-only">Search</span>
+                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                </span>
+                <input class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-full py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search for anything..." type="text" name="search"/>
+              </label> */}
+
               <div className='hidden md:flex pr-4'>
                 <button className='px-8 py-3 rounded-full duration-500 hover:bg-cyan-600'>
                   <Link to="/profile" className="text-gray-800 hover:text-white duration-500">{`${user.username}`}</Link>
@@ -137,6 +151,20 @@ const Header = () => {
                   <li><Link to="/donation" className="text-gray-800 hover:text-gray-400 duration-500 px-2 py-3">Donation</Link></li>
                 </ul>
               </div>
+
+              <Search searchText={(text) => setTerm(text)} />
+
+              {/* search engine */}
+              {/* <label class="relative block">
+                <span class="sr-only">Search</span>
+                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                </span>
+                <input class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-full py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search for anything..." type="text" name="search"/>
+              </label> */}
+
               <div className='hidden md:flex pr-4'>
                 <button className='px-8 py-3 rounded-full duration-500 hover:bg-cyan-600'>
                   <Link to="/login" className="text-gray-800 hover:text-gray-400 duration-500">Login</Link>
