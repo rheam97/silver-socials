@@ -63,7 +63,7 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/profile/:username?" component={Profile} />
-               {/* <Route exact path="/group" component={GroupList} />  */}
+               { /*<Route exact path="/group" component={GroupList} /> */ } 
                {/* <Route exact path="/groupitem" component={GroupItem} />  */}
                <Route exact path="/group/:id" component={Group} /> 
                <Route exact path="/about" component={About} /> 
