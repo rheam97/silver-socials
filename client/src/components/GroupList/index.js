@@ -18,7 +18,7 @@ function GroupList() {
   const { currentInterest } = state;
 
   const { loading, error, data } = useQuery(QUERY_GROUPS);
-
+/// do i need to add cache to this when i add a group?
   useEffect(() => {
     if (data) {
       dispatch({
@@ -71,7 +71,7 @@ function GroupList() {
   return (
     
     <div className="my-2">
-      <h2 className="font-bold text-black-500 text-xl mb-2">Groups for {currentInterest}:</h2>
+      <h2 className="font-bold text-black-500 text-xl mb-2 ">Groups for {currentInterest}:</h2>
       {state.groups.length ? (
         <div className="grid grid-cols-3 gap-4">
           {loading ? (

@@ -24,6 +24,18 @@ export const QUERY_INTERESTS = gql`
     }
   }
 `;
+export const QUERY_INTERESTS2 = gql`
+  query Interests {
+    interests {
+      name
+      groups {
+        name
+        _id
+        description
+      }
+    }
+  }
+`;
 export const QUERY_INTEREST = gql`
   query Interest($name: String!) {
     interest(name: $name) {

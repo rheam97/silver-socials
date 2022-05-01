@@ -11,7 +11,7 @@ const Signup = () => {
   const [formState, setFormState] = useState({
     username: "",
     email: "",
-    image: document.getElementById('profileimage').value,
+    image: "",
     password: "",
   });
   const [addUser, { error }] = useMutation(ADD_USER);
@@ -21,7 +21,7 @@ const Signup = () => {
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
-
+    console.log(formState)
     setFormState({
       ...formState,
       [name]: value,
@@ -61,8 +61,8 @@ const Signup = () => {
             <h1>Create Account</h1>
             <div className="form-inputs">
               {/* <---file input label to upload profile pic---> */}
-              <label className="form-label"for="profileimage">Select an image:</label>
-              <input className="form-input" type="file" id="profileimage" name="profileimage" />
+              <label className="form-label" htmlFor="image">Select an image:</label>
+              <input onChange={handleChange} value={formState.image} className="form-input" type="file" id="image" name="image" />
               <label className="form-label">Username</label>
               <input
                 className="form-input"

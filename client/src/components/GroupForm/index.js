@@ -5,6 +5,7 @@ import { ADD_GROUP } from "../../utils/mutations";
 import {
   QUERY_GROUPS,
   QUERY_ME,
+  QUERY_INTERESTS2,
   QUERY_INTERESTS,
   QUERY_INTEREST,
 } from "../../utils/queries";
@@ -24,11 +25,11 @@ const GroupForm = () => {
         // update group array's cache
         // could potentially not exist yet, so wxrap in a try/catch
         //not sure about this because mutation returns interest?
-        const { interests } = cache.readQuery({ query: QUERY_INTERESTS });
+        const { interests } = cache.readQuery({ query: QUERY_INTERESTS2 });
         cache.writeQuery({
-          query: QUERY_INTERESTS,
+          query: QUERY_INTERESTS2,
           data: {
-            interests: { ...interests, addGroup },
+            interests: [ ...interests, addGroup ],
           },
         });
       } catch (e) {
@@ -79,7 +80,7 @@ const GroupForm = () => {
   };
 
   return (
-    <div className="flex w-full">
+    <div cclassName="max-w-sm rounded overflow-hidden shadow-lg">
       <p
         className={`m-0 ${
           (textCharacterCount === 700 && nameCharacterCount === 280) || error
@@ -94,7 +95,7 @@ const GroupForm = () => {
         className="flex-row justify-center justify-space-between-md align-stretch"
         onSubmit={handleFormSubmit}
       >
-        <label for="groupimage">Select an image:</label>
+        <label htmlFor="groupimage">Select an image:</label>
         <input type="file" id="groupimage" name="groupimage"/>
         <textarea
           placeholder="New group name..."

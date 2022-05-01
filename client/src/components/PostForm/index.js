@@ -16,7 +16,7 @@ const PostForm = () => {
     //     const { group } = cache.readQuery({ query: QUERY_GROUP });
     //     cache.writeQuery({
     //       query: QUERY_GROUP,
-    //       data: { group: {...group,  posts: [...group.posts, addPost] } },
+    //       data: { group: {...group, addPost.group] } },
     //     });
     //   } catch (e) {
     //     console.error(e);
@@ -26,7 +26,7 @@ const PostForm = () => {
     //   const { me } = cache.readQuery({ query: QUERY_ME });
     //   cache.writeQuery({
     //     query: QUERY_ME,
-    //     data: { me: { ...me, posts: [...me.posts, addPost] } },
+    //     data: { me: { ...me, addPost.user] } },
     //   });
     // },
   });
