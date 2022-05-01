@@ -55,15 +55,17 @@ const [joinGroup, { error }] = useMutation(JOIN_GROUP, {
   };
 
   return (
-    <div className="card px-1 py-1">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <Link to={`/group/${_id}`}>
-        <img alt={name} src={`${image}`} />
-        <p>{name}</p>
+        <img alt={name} src={`${image}`} className="w-full" onError = {e => e.target.style.display = 'none'}/>
+        <strong className="font-bold text-blue-500 text-xl mb-2">{name}</strong>
       </Link>
-      <div>
-        <span>{members.length} <span>{members.length===1 ? <span>Member</span> : <span>Members</span> }</span></span>
-      </div>
-      <button onClick={joinAsMember}>Join this Group Now</button>
+      <div className="inline-block bg-gray-200 rounded-full ml-2 px-5 py-1 text-sm font-semibold text-gray-700 mr-2">
+        <strong>{members.length} <strong>{members.length===1 ? <strong>Member</strong> : <strong>Members</strong> }</strong></strong>
+    </div>
+    <div>
+    <button onClick={joinAsMember} className="font-bold text-black-500 text-xl mb-2">+ Join this Group Now</button>
+    </div>
     </div>
   );
 }

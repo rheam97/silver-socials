@@ -16,7 +16,7 @@ const GroupForm = () => {
   const [textCharacterCount, setTextCharacterCount] = useState(0);
   const { loading, data } = useQuery(QUERY_INTERESTS);
   const interests = data?.interests || [];
-  let name;
+
 
   const [addGroup, { error }] = useMutation(ADD_GROUP, {
     update(cache, { data: { addGroup } }) {
@@ -24,29 +24,25 @@ const GroupForm = () => {
         // update group array's cache
         // could potentially not exist yet, so wxrap in a try/catch
         //not sure about this because mutation returns interest?
-        const { groups } = cache.readQuery({ query: QUERY_GROUPS });
+        const { interests } = cache.readQuery({ query: QUERY_INTERESTS });
         cache.writeQuery({
-          query: QUERY_GROUPS,
-          data: { groups: [addGroup, ...groups] },
+          query: QUERY_INTERESTS,
+          data: {
+            interests: { ...interests, addGroup },
+          },
         });
       } catch (e) {
         console.error(e);
       }
       // update interest object cache****** alos how to query for specific interest?
-      const { interest } = cache.readQuery({ query: QUERY_INTEREST });
-      cache.writeQuery({
-        query: QUERY_INTEREST,
-        data: {
-          interest: { ...interest, groups: [...interest.groups, addGroup] },
-        },
-      });
+    
       // update me object's cache
       // not sure about this because mutation returns interest?
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, groups: [...me.groups, addGroup] } },
-      });
+      // const { me } = cache.readQuery({ query: QUERY_ME });
+      // cache.writeQuery({
+      //   query: QUERY_ME,
+      //   data: { me: { ...me, groups: [...me.groups, addGroup] } },
+      // });
     },
   });
 
@@ -69,7 +65,7 @@ const GroupForm = () => {
     event.preventDefault();
     try {
       await addGroup({
-        variables: { name, input: { name: groupName, description: groupText } },
+        variables: { name: document.getElementById('interestname').value, input: { name: groupName, description: groupText, image: document.getElementById("groupimage").value } },
       });
 
       // clear form value
@@ -98,6 +94,8 @@ const GroupForm = () => {
         className="flex-row justify-center justify-space-between-md align-stretch"
         onSubmit={handleFormSubmit}
       >
+        <label for="groupimage">Select an image:</label>
+        <input type="file" id="groupimage" name="groupimage"/>
         <textarea
           placeholder="New group name..."
           value={groupName}
@@ -110,7 +108,7 @@ const GroupForm = () => {
           className="form-input col-12 col-md-9"
           onChange={handleTextChange}
         ></textarea>
-        <select>
+        <select id ='interestname'>
           {interests.map(({ name }) => (
             <option key={name} value={name}>
               {name}

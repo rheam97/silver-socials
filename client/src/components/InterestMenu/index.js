@@ -68,10 +68,11 @@ function InterestMenu() {
   // ];
 
   return (
-    <div>
-      <h2>Choose By Interest:</h2>
+    <div className="flex justify-content-space-between">
+      <h2 className= "font-bold text-black-500 text-xl mb-2 block mr-3">Choose By Interest:</h2>
       {interests.map((interest) => (
         <button
+        className="px-3 py-1  w-[30%] md:w-[30%] lg:w-[30%] my-4 bg-cyan-600 rounded-full text-white hover:bg-cyan-900 duration-500"
           key={interest.name}
           onClick={() => {
             handleClick(interest.name);

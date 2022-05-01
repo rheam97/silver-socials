@@ -31,11 +31,11 @@ const Home = () => {
       {/* <HomeProvider> */}
       <div className="mt-10 flex-row justify-space-between w-[70%] mx-auto">
         <div>
+        <InterestMenu /> 
           <GroupList/>
           <GroupForm/>
       </div>
       <div className="col-12 mb-3">
-          <InterestMenu /> 
           <ImageCards />
           
         </div>

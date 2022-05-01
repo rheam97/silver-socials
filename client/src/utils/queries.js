@@ -17,6 +17,7 @@ export const QUERY_INTERESTS = gql`
       }
         members {
           _id
+          image
           username
         }
       }
@@ -46,6 +47,7 @@ export const QUERY_GROUPS = gql`
       members {
         _id
         username
+        image
       }
       posts {
         _id
@@ -67,6 +69,7 @@ export const QUERY_GROUP = gql`
       members {
         _id
         username
+        image
         posts {
           _id
           postText

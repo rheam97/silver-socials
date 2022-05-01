@@ -71,9 +71,9 @@ function GroupList() {
   return (
     
     <div className="my-2">
-      <h2>Groups for {currentInterest}:</h2>
+      <h2 className="font-bold text-black-500 text-xl mb-2">Groups for {currentInterest}:</h2>
       {state.groups.length ? (
-        <div className="flex-row">
+        <div className="grid grid-cols-3 gap-4">
           {loading ? (
             <p>Loading...</p>
           ) : (
