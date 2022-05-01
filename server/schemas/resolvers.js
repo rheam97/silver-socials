@@ -56,11 +56,11 @@ const resolvers = {
             .populate('groups')
         },
         user: async (parent, {username}, context)=> {
-            return User.findOne(username)
+            return User.findOne({ username })
             .select('-__v -password')
             .populate('friends')
-            .execPopulate('posts')
-            .execPopulate('groups')
+            .populate('posts')
+            .populate('groups')
         }
     },
     Mutation: {

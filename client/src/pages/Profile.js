@@ -59,17 +59,15 @@ import Auth from "../utils/auth";
 //   );
 // };
 
-const Profile = (props) => {
+const Profile = () => {
   const { username: userParam } = useParams();
-
+  // console.log(username, "logging username")
   // const [addpost] = useMutation(ADD_POST);
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
-  
   const user = data?.me || data?.user || {};
-  console.log(user, "testing")
-  // console.log(user, "testing")
+
   // redirect to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     return <Redirect to="/profile" />;
