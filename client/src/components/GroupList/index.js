@@ -75,7 +75,7 @@ function GroupList() {
       {state.groups.length ? (
         <div className="flex-row">
           {loading ? (
-            <p>Loading...</p>
+            <p>{spinner}Loading...</p>
           ) : (
             state.groups.map((group) => (
               <GroupItem

@@ -30,14 +30,19 @@ const Home = () => {
     <Hero />
       {/* <HomeProvider> */}
       <div className="mt-10 flex-row justify-space-between w-[70%] mx-auto">
-        <div>
-          <GroupList/>
-          <GroupForm/>
-      </div>
-      <div className="col-12 mb-3">
+        <div className="">
+            <div className="">
+              <div className="grid sm:grid-cols-3 gap-4">
+                <GroupList/>
+              </div>
+              <div>
+                <GroupForm/>
+              </div>
+            </div>
+        </div>   
+        <div className="col-12 mb-3">
           <InterestMenu /> 
           <ImageCards />
-          
         </div>
       </div>
       {/* </HomeProvider> */}

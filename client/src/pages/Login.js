@@ -5,8 +5,9 @@ import Auth from '../utils/auth';
 import silversociallogo from '../assets/silversocial-logo-white-01.png';
 import { Link, useNavigate } from 'react-router-dom';
 // import google login and logo
-import GoogleLogin from 'react-google-login';
+import {GoogleLogin} from 'react-google-login';
 import { FcGoogle } from 'react-icons/fc';
+import {useDispatch} from 'react-redux';
 
 // import styling
 import '../styles/signupform.scss';
@@ -40,21 +41,6 @@ const Login = (props) => {
     });
   };
 
-  // google login creditial
-  // const navigate = useNavigate();
-  const responseGoogle = (response) => {
-    localStorage.setItem('user', JSON.stringify(response.profileObj));
-
-    // const { name, googleId, imageUrl } = response.profileObj
-
-    // const doc = {
-    //   _id: googleId,
-    //   _type: 'user',
-    //   userName: name,
-    //   image: imageUrl
-    // }
-  }
-
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -72,6 +58,36 @@ const Login = (props) => {
       password: '',
     });
   };
+
+  // google login creditial
+  // const navigate = useNavigate();
+  // const { name, googleId, imageUrl } = response.profileObj
+
+    // const doc = {
+    //   _id: googleId,
+    //   _type: 'user',
+    //   userName: name,
+    //   image: imageUrl
+    // }
+    // const dispatch = useDispatch();
+    // const googleSuccess = async (res) => {
+    // console.log(res);
+    // localStorage.setItem('user', JSON.stringify(response.profileObj));
+
+    // const result = res?.profileObj;
+    // const token = res?.tokenId;
+
+    // try {
+    //   dispatch({ type: 'AUTH', data: { result, token }});
+    // } catch(error) {
+    //   console.log(error);
+    // }
+  // }
+
+  //   const googleFailure = (error) =>{
+  //   console.log(error)
+  //   console.log('Google Sign In was unsuccessful. Try Again Later');
+  // }
 
   return (
     <main className='flex-row justify-center mb-4 h-screen' style={{height:'100vh'}}>
@@ -136,8 +152,12 @@ const Login = (props) => {
           {errors.password2 && <p>{errors.password2}</p>}
         </div> */}
 
+        <button className='form-input-btn' type='submit'>
+          Log in
+        </button>
+        {error && <div><p style={{color:"red"}}>Login failed</p></div>}
         {/* Google credetials */}
-        <div className="shadow-2xl form-inputs">
+        <div className="shadow-2xl form-inputs mt-4">
             <GoogleLogin
               clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
               render={(renderProps) => (
@@ -151,17 +171,11 @@ const Login = (props) => {
                   <FcGoogle className="mr-4" /> Sign in with Google
                 </button>
               )}
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
+              // onSuccess={googleSuccess}
+              // onFailure={googleFailure}
               cookiePolicy="single_host_origin"
             />
           </div>
-
-        <button className='form-input-btn' type='submit'>
-          Log in
-        </button>
-        {error && <div><p style={{color:"red"}}>Login failed</p></div>}
-
         <span className='form-input-login'>
           <Link to="/signup">
             {"Don't have an account? Sign Up"}

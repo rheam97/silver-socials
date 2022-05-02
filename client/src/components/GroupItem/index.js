@@ -10,6 +10,13 @@ import {QUERY_ME, QUERY_GROUP} from '../../utils/queries'
 // import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 // import { idbPromise } from "../../utils/helpers";
 
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 function GroupItem(group) {
 
   const { name, _id, members} = group;
@@ -55,16 +62,28 @@ const [joinGroup, { error }] = useMutation(JOIN_GROUP, {
   };
 
   return (
-    <div className="card px-1 py-1">
+    <Card sx={{ maxWidth: 345 }}>
+    <CardMedia
+        component="img"
+        alt=""
+        height="80%"
+        image="https://source.unsplash.com/random"
+      />
+      <CardContent className='!pb-0'>
+      <Typography gutterBottom variant="h5" component="div">
       <Link to={`/group/${_id}`}>
         {/* <img alt={name} src={`/images/${image}`} /> */}
-        <p>{name}</p>
+        <span className='font-[Poppins] hover:text-cyan-600'>{name}</span>
       </Link>
-      <div>
-        <span>{members.length} <span>{members.length===1 ? <span>Member</span> : <span>Members</span> }</span></span>
-      </div>
-      <button onClick={joinAsMember}>Join this Group Now</button>
-    </div>
+      </Typography>
+      </CardContent>
+      <CardActions className='font-[Poppins] text-cyan-600'>
+      <Button size="small"><span className='font-[Poppins] text-cyan-600'>{members.length} <span>{members.length===1 ? <span>Member</span> : <span>Members</span> }</span></span></Button>
+      
+      <Button size="small" onClick={joinAsMember}><span className='font-[Poppins] text-cyan-600'>Join this Group Now</span></Button>
+      </CardActions>
+      {/* <button onClick={joinAsMember}>Join this Group Now</button> */}
+    </Card>
   );
 }
 
