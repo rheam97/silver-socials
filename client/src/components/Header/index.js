@@ -81,7 +81,7 @@ const Header = () => {
 
               <div className='hidden md:flex pr-4'>
                   <Link to="/profile">
-                  <button className='px-8 py-3 rounded-full duration-500 hover:bg-cyan-600 hover:text-white'>
+                  <button className='mr-3 px-8 py-3 rounded-full duration-500 hover:bg-cyan-600 hover:text-white'>
                   {/* <Link to="/profile" className="text-gray-800 hover:text-white duration-500"> */}
                   {`${user.username}`}
                   {/* </Link> */}
@@ -105,7 +105,7 @@ const Header = () => {
                 <li className='border-b-2 border-zinc-300 w-full mt-6'><Link onClick={handleClose} to="/donation" className="text-gray-800 hover:text-gray-400 duration-500">Donation</Link></li>
 
               <div className='flex flex-col my-4 mb-8'>
-                  <Link to="/profile" className='mr-3 text-center border border-cyan-600 rounded-full bg-transparent px-8 py-3 text-black mr-4 mt-6 hover:bg-white duration-500'>
+                  <Link to="/profile" className='text-center border border-cyan-600 rounded-full bg-transparent px-8 py-3 text-black mr-4 mt-6 hover:bg-white duration-500'>
                   <button>{`${user.username}`}</button>
                   </Link>          
                 <a href="/" onClick={logout} className="text-center px-8 py-3 rounded-full duration-500 text-white bg-cyan-600 mt-6 mr-4 hover:bg-cyan-900 duration-500">

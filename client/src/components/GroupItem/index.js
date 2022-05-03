@@ -63,7 +63,7 @@ const [joinGroup, { error }] = useMutation(JOIN_GROUP, {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-    <CardActionArea>
+    {/* <CardActionArea> */}
 
     <CardMedia
         component="img"
@@ -87,7 +87,7 @@ const [joinGroup, { error }] = useMutation(JOIN_GROUP, {
       <Button size="small" onClick={joinAsMember}><span className='font-[Poppins] text-cyan-600 hover:text-red-600'>Join this Group Now</span></Button>
       </CardActions>
       {/* <button onClick={joinAsMember}>Join this Group Now</button> */}
-      </CardActionArea>
+      {/* </CardActionArea> */}
       </Card>
     
   );
