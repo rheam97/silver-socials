@@ -70,7 +70,7 @@ const Profile = () => {
     variables: { username: userParam },
   });
   const user = data?.me || data?.user || {};
-
+  console.log(user.image) // coming up blank??
   // redirect to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     return <Redirect to="/profile" />;
@@ -116,21 +116,22 @@ const Profile = () => {
             />
             <img
               className="rounded-full border border-white w-40 h-40 -mt-20 shadow-xl object-cover"
-              src={`${user.image}`}
+              src={`${user.image}`.split('C:\\fakepath\\')[1]}
               // src="https://source.unsplash.com/1600x900/?username"
               alt="user-pic"
+              onError = {e => e.target.style.display = 'none'}
             />
           </div>
           <h1 className="font-bold text-3xl text-center mt-3">
             {/* {user.userName} */}
-            {`${user.username}`}
+            {user.username}
           </h1>
         </div>
         <div className="flex-row justify-space-between mb-3">
         <div className="col-12 mb-3 col-lg-8 text-center">
           <ProfileGroups // instead of this you can just map the groups returned by the query into a list element
             groups={user.groups}
-            title={`${user.username}'s Groups...`}
+            title={`${user.username}'s Groups`}
           />
         </div>
 

@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 const PostList = ({ posts }) => {
   return (
-    <div className="card mb-3">
+    <div className="list-group w-[75%] mt-5">
       <div className="card-header">
-        <span className="text-light">Posts</span>
+        <span className="text-light">Discussion</span>
       </div>
-      <div className="card-body">
+      <div className="bg-gray-300 mb-2">
         {posts &&
           posts.map(post => (
-            <p className="pill mb-3" key={post._id}>
+            <p  key={post._id}>
               {post.postText} {' '}
               <Link to={`/profile/${post.username}`} style={{ fontWeight: 700 }}>
                 {post.username} on {post.createdAt}
