@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_POST } from "../../utils/mutations";
 import { QUERY_GROUP, QUERY_ME } from "../../utils/queries";
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 const PostForm = () => {
   const [postText, setText] = useState("");
@@ -33,7 +34,7 @@ const PostForm = () => {
 
   // update state based on form input changes
   const handleChange = (event) => {
-    if (event.target.value.length <= 280) {
+    if (event.target.value.length <= 1000) {
       setText(event.target.value);
       setCharacterCount(event.target.value.length);
     }
@@ -60,28 +61,38 @@ const PostForm = () => {
   };
 
   return (
-    <div>
-      <p
-        className={`m-0 ${characterCount === 280 || error ? "text-error" : ""}`}
-      >
-        Character Count: {characterCount}/280
-        {error && <span className="ml-2">Something went wrong...</span>}
-      </p>
       <form
-        className="flex-row justify-center justify-space-between-md align-stretch"
+        className="form-group w-[70%] mt-5"
         onSubmit={handleFormSubmit}
       >
-        <textarea
+      <p className='font-[Poppins] text-2xl mb-2'>
+      New post
+      </p>
+        
+      
+       <TextareaAutosize
           placeholder="Here's a new post..."
           value={postText}
-          className="form-input col-12 col-md-9"
+          className="form-input col-12 col-md-9 mt-1"
           onChange={handleChange}
-        ></textarea>
-        <button className="btn col-12 col-md-3" type="submit">
+          minRows={3}
+        ></TextareaAutosize>
+        {/* <textarea
+          placeholder="Here's a new post..."
+          value={postText}
+          className="form-control w-full border border-dark"
+          onChange={handleChange}
+        ></textarea> */}
+         <p
+        className={`m-0 font-[Poppins] ${characterCount === 1000 || error ? "text-error" : ""} d-block text-sm`}
+      >
+        Character Count: {characterCount}/1000
+        {error && <span className="ml-2 text-red-500">Something went wrong...</span>}
+      </p>
+        <button className="font-[Poppins] btn text-center w-full sm:w-[25%] mt-5 py-3 px-6 my-4 bg-cyan-600 rounded-full text-white hover:bg-cyan-900 duration-500" type="submit">
           Submit
         </button>
       </form>
-    </div>
   );
 };
 

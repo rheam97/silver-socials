@@ -6,12 +6,12 @@ import {HomeProvider} from './utils/HomeStore'
 //import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
+
      <HomeProvider>
     <App />
     </HomeProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  
+  ,document.getElementById('root')
 )
 
 // If you want to start measuring performance in your app, pass a function

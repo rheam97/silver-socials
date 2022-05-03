@@ -7,7 +7,8 @@ import {QUERY_CHECKOUT} from "../utils/queries"
 //import { Elements } from "@stripe/react-stripe-js";
 //import CardSection from "../pages/CardSection";
 //const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
-const stripePromise = loadStripe("pk_test_51KvL8kL5WnZOXfBKlXQ0QH6R9DwH76YfN2v5IpYMtc1JAIl4yNeK0R87YJpQfbMYf4IsmkEPteGi8f6f0NUAfjfr00lzGtFon5");
+const stripePromise = loadStripe("pk_test_51KvRkLEDHZQbCChzQC1hHfBg735yXRg7427DE09OGe3HfMaHBdtAKif7LCIX9nFoQPziBLx1ZWy4hQonNTNYjKuY00Acd9p2VE");
+//pk_test_51KvRkLEDHZQbCChzQC1hHfBg735yXRg7427DE09OGe3HfMaHBdtAKif7LCIX9nFoQPziBLx1ZWy4hQonNTNYjKuY00Acd9p2VE
 //pk_test_TYooMQauvdEDq54NiTphI7jx
 //const stripe = useStripe();
 //const elements = useElements();
@@ -18,12 +19,14 @@ function CheckoutForm() {
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
   useEffect(async () => {
+    console.log("data", data);
     if (data) {
       const res = await stripePromise;
       res.redirectToCheckout({ sessionId: data.checkout.session });
     }
   }, [data]);
 
+  
   // function submitCheckout() {
   //   const productIds = [];
 
@@ -38,7 +41,7 @@ function CheckoutForm() {
   let handleSubmit = async (event) => {
     //event.preventDefault();
     getCheckout({
-      variables: { donationAmtDollars: 2.5 },
+      variables: { donationAmtDollars: 10.00 },
     });
     // const { stripe, elements } = this.props;
     // if (!stripe || !elements) {
@@ -58,10 +61,16 @@ function CheckoutForm() {
     <div>
       <div className="product-info">
         <h3 className="product-title">Donations</h3>
-        <h4 className="product-price">$2.50</h4>
+        <h4 className="product-price">$10.00</h4>
       </div>
       <button onClick={handleSubmit}>Donate Now</button>
+  
+
     </div>
+
+
+
+
   );
 }
 

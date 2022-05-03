@@ -4,4 +4,7 @@ export const FILTER_GROUPS = "FILTER_GROUPS";
 
 export const UPDATE_INTERESTS = "UPDATE_INTERESTS";
 export const UPDATE_CURRENT_INTEREST = "UPDATE_CURRENT_INTEREST";
-export const GET_GROUPS='GET_GROUPS'
+export const GET_GROUPS = 'GET_GROUPS'
+
+export const AUTH = 'AUTH';
+export const LOGOUT = 'LOGOUT';
