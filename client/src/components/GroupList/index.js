@@ -71,11 +71,11 @@ function GroupList() {
   return (
     
     <div className="my-2">
-      <h2 className="font-bold text-black-500 text-xl mb-2 ">Groups for {currentInterest}:</h2>
+      <h2 className="font-[Poppins] font-bold text-black-500 text-4xl mb-6">Groups for {currentInterest}</h2>
       {state.groups.length ? (
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {loading ? (
-            <p>Loading...</p>
+            <p>{spinner}Loading...</p>
           ) : (
             state.groups.map((group) => (
               <GroupItem

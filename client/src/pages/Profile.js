@@ -100,13 +100,15 @@ const Profile = () => {
   // };
 
   return ( // needs userParams condition
-  <main>
+  <main className="absolute">
     <Header />
-  
-  <div className="relative pb-2 h-full w-screen justify-center items-center">
-      <div className="flex flex-col pb-5 font-[Poppins]">
-        <div className="relative flex flex-col mb-7">
-          <div className="flex flex-col justify-center items-center">
+    {/* <div className="relative pb-2 h-full w-screen justify-center items-center">
+      <div className="flex flex-col pb-5 font-[Poppins] ">
+        <div className="relative flex flex-col mb-7 z-0"> */}
+  <div>
+      <div>
+        <div>
+          <div className="flex flex-col pb-5 justify-center items-center font-[Poppins]">
             <img
               className="w-[70%] h-370 2xl:h-510 shadow-lg object-cover"
               src="https://source.unsplash.com/1600x900/?nature,photography,technology"

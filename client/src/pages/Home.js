@@ -4,6 +4,7 @@
 import React from "react";
 import GroupForm from "../components/GroupForm";
 import GroupList from "../components/GroupList";
+import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 
 import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
@@ -33,7 +34,32 @@ const Home = () => {
       <Header />
       <Hero />
       {/* <HomeProvider> */}
-      <div className="mt-10 flex-row flex-wrap justify-space-between w-[70%] mx-8">
+      <div maxWidth="lg" className="mt-10 flex-row flex-wrap justify-space-between mx-8">
+          <InterestMenu />
+      </div>
+
+      <Container maxWidth="lg" className="mt-10 flex-row flex-wrap justify-space-between w-[70%] mx-8">
+      {/* <AppBar position="static" color="inherit"> */}
+      {/* </AppBar> */}
+      {/* <Grow in> */}
+        <Container>
+          <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+            <Grid item xs={12} sm={7}>
+              <GroupList />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <GroupForm />
+            </Grid>
+          </Grid>
+        </Container>
+      {/* </Grow> */}
+    </Container>
+      {/* <div className="mt-10 flex-row justify-space-between w-[70%] mx-auto">
+          <div className="col-12 mb-3">
+            <ImageCards />
+          </div>
+      </div> */}
+      {/* <div className="mt-10 flex-row flex-wrap justify-space-between w-[70%] mx-8">
         <div>
           <InterestMenu />
           <GroupList />
@@ -44,7 +70,7 @@ const Home = () => {
             <ImageCards />
           </div>
         </div>
-      </div>
+      </div> */}
       {/* </HomeProvider> */}
       <Footer />
     </main>
@@ -52,3 +78,5 @@ const Home = () => {
 };
 
 export default Home;
+
+
