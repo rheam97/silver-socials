@@ -15,7 +15,7 @@ db.once("open", async () => {
   for (let i = 0; i < 10; i += 1) {
     const username = faker.internet.userName();
     const email = faker.internet.email(username);
-    const image = faker.image.avatar();
+    const image = "https://st.depositphotos.com/2218212/2938/i/950/depositphotos_29387653-stock-photo-facebook-profile.jpg"
     const password = faker.internet.password();
 
     userData.push({ username, email, image, password });
