@@ -9,6 +9,13 @@ import {QUERY_ME, QUERY_GROUP} from '../../utils/queries'
 //import { useStoreContext } from "../../utils/GlobalState";
 // import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 // import { idbPromise } from "../../utils/helpers";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
 
 function GroupItem(group) {
 
@@ -55,19 +62,37 @@ const [joinGroup, { error }] = useMutation(JOIN_GROUP, {
   };
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+    <Card sx={{ maxWidth: 345 }}>
+    <CardActionArea>
+
+    <CardMedia
+        component="img"
+        alt={name}
+        height="200px !important"
+        src={`${image}`}
+        onError = {e => e.target.style.display = 'none'}
+        // image="https://source.unsplash.com/random"
+      />
+      <CardContent className='!pb-0'>
+      <Typography gutterBottom variant="h5" component="div">
       <Link to={`/group/${_id}`}>
-        <img alt={name} src={`${image}`} className="w-full" onError = {e => e.target.style.display = 'none'}/>
-        <strong className="font-bold text-blue-500 text-xl mb-2">{name}</strong>
+        {/* <img alt={name} src={`/images/${image}`} /> */}
+        <span className='font-[Poppins] hover:text-cyan-600'>{name}</span>
       </Link>
-      <div className="inline-block bg-gray-200 rounded-full ml-2 px-5 py-1 text-sm font-semibold text-gray-700 mr-2">
-        <strong>{members.length} <strong>{members.length===1 ? <strong>Member</strong> : <strong>Members</strong> }</strong></strong>
-    </div>
-    <div>
-    <button onClick={joinAsMember} className="font-bold text-black-500 text-xl mb-2">+ Join this Group Now</button>
-    </div>
-    </div>
+      </Typography>
+      </CardContent>
+      <CardActions>
+      <Button size="small"><span className='font-[Poppins] text-cyan-600 hover:text-red-600'>{members.length} <span>{members.length===1 ? <span>Member</span> : <span>Members</span> }</span></span></Button>
+      
+      <Button size="small" onClick={joinAsMember}><span className='font-[Poppins] text-cyan-600 hover:text-red-600'>Join this Group Now</span></Button>
+      </CardActions>
+      {/* <button onClick={joinAsMember}>Join this Group Now</button> */}
+      </CardActionArea>
+      </Card>
+    
   );
 }
 
 export default GroupItem;
+
+

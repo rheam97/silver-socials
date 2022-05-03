@@ -80,7 +80,7 @@ const GroupForm = () => {
   };
 
   return (
-    <div cclassName="max-w-sm rounded overflow-hidden shadow-lg">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <p
         className={`m-0 ${
           (textCharacterCount === 700 && nameCharacterCount === 280) || error
