@@ -43,6 +43,7 @@ const typeDefs = gql`
     getallgroups: [Group]
     groups(username: String!): User
     group(_id: ID!): Group
+    checkout(donationAmtDollars: Float!): Checkout
   }
   type AddPostResponse {
     user: User
@@ -64,6 +65,10 @@ const typeDefs = gql`
     token: ID!
     user: User
   }
+  
+  type Checkout {
+  session: ID
+}
 `;
 
 module.exports = typeDefs;
