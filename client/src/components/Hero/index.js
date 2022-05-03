@@ -10,7 +10,7 @@ const Hero = () => {
             <div className='flex flex-col justify-center md:items-start w-full px-12 py-8 font-[Poppins]'>
                 <h1 className='py-3 text-5xl md:text-7xl font-bold'>Silver Socials</h1>
                 <p className='text-2xl'>People have turned to Silver Social to meet people, make friends, find support, and explore their interests. —join the fun.</p>
-                <Link to='/donation' className='text-center mt-12 py-3 px-6 w-[45%] md:w-[45%] lg:w-[40%] my-4 bg-cyan-600 rounded-full text-white hover:bg-cyan-900 duration-500'>
+                <Link to='/donation' className='drop-shadow-lg text-center mt-12 py-3 px-6 w-[60%] md:w-[55%] lg:w-[40%] my-4 bg-cyan-600 rounded-full text-white hover:bg-cyan-900 duration-500'>
                     <button> Donation </button>
                 </Link>
             </div>

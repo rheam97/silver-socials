@@ -12,7 +12,7 @@ return (
         <div className='w-full h-full flex flex-col items-center justify-between mx-auto font-[Poppins]'>
         <div className='grid md:grid-cols-2 max-w-[1240px] m-auto pt-10'>
             <div className='flex flex-col justify-center md:items-start w-full px-12 py-12 font-[Poppins]'>
-                <h1 className='py-3 text-5xl md:text-7xl font-bold'>Welcome to</h1>
+                <h1 className='py-3 text-5xl sm:text-7xl font-bold'>Welcome to</h1>
                 <h1 className='py-3 text-5xl md:text-7xl font-bold' style={{ color:'#199BC5' }}>Silver Socials</h1>
                 {/* <div className="my-6 flex flex-row">
                   <ul>
@@ -34,7 +34,7 @@ return (
                   <button className='px-12 py-3 border border-cyan-600 text-center rounded-full hover:bg-cyan-600 duration-500'>Home</button>
                   </Link>
                   <Link to="/donation">
-                    <button className='px-8 py-3 rounded-full duration-500 text-white bg-cyan-600 hover:bg-cyan-900'>Donation</button>
+                    <button className='px-9 py-3 mt-3 md:mt-0 rounded-full duration-500 text-white bg-cyan-600 hover:bg-cyan-900'>Donation</button>
                   </Link>
                 </div>
           
