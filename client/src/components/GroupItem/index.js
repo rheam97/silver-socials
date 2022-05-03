@@ -9,17 +9,17 @@ import {QUERY_ME, QUERY_GROUP} from '../../utils/queries'
 //import { useStoreContext } from "../../utils/GlobalState";
 // import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 // import { idbPromise } from "../../utils/helpers";
-
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
 
 function GroupItem(group) {
 
-  const { name, _id, members} = group;
+  const { image, name, _id, members} = group;
   // const [joinGroup] = useMutation(JOIN_GROUP)
 // do i need to add cache?????
 // console.log(members)
@@ -63,11 +63,15 @@ const [joinGroup, { error }] = useMutation(JOIN_GROUP, {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
+    <CardActionArea>
+
     <CardMedia
         component="img"
-        alt=""
-        height="80%"
-        image="https://source.unsplash.com/random"
+        alt={name}
+        height="200px !important"
+        src={`${image}`}
+        onError = {e => e.target.style.display = 'none'}
+        // image="https://source.unsplash.com/random"
       />
       <CardContent className='!pb-0'>
       <Typography gutterBottom variant="h5" component="div">
@@ -77,14 +81,18 @@ const [joinGroup, { error }] = useMutation(JOIN_GROUP, {
       </Link>
       </Typography>
       </CardContent>
-      <CardActions className='font-[Poppins] text-cyan-600'>
-      <Button size="small"><span className='font-[Poppins] text-cyan-600'>{members.length} <span>{members.length===1 ? <span>Member</span> : <span>Members</span> }</span></span></Button>
+      <CardActions>
+      <Button size="small"><span className='font-[Poppins] text-cyan-600 hover:text-red-600'>{members.length} <span>{members.length===1 ? <span>Member</span> : <span>Members</span> }</span></span></Button>
       
-      <Button size="small" onClick={joinAsMember}><span className='font-[Poppins] text-cyan-600'>Join this Group Now</span></Button>
+      <Button size="small" onClick={joinAsMember}><span className='font-[Poppins] text-cyan-600 hover:text-red-600'>Join this Group Now</span></Button>
       </CardActions>
       {/* <button onClick={joinAsMember}>Join this Group Now</button> */}
-    </Card>
+      </CardActionArea>
+      </Card>
+    
   );
 }
 
 export default GroupItem;
+
+

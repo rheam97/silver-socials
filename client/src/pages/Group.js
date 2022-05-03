@@ -34,7 +34,7 @@ const SingleGroup = (props) => {
           <span style={{ fontWeight: 700 }} className="text-light">
             {group.name}
           </span>{" "}
-          {group.member}
+          <img alt={group.name} src={`${group.image}`} />
         </p>
         <div className="card-body">
           <p>{group.description}</p>

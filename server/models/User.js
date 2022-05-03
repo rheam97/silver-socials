@@ -9,6 +9,10 @@ const userSchema = new Schema(
       unique: true,
       trim: true
     },
+    image: {
+      type: String,
+      default: "https://st.depositphotos.com/2218212/2938/i/950/depositphotos_29387653-stock-photo-facebook-profile.jpg"
+    },
     email: {
       type: String,
       required: true,

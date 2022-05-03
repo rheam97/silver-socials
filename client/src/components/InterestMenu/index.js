@@ -68,18 +68,27 @@ function InterestMenu() {
   // ];
 
   return (
-    <div>
-      <h2>Choose By Interest:</h2>
-      {interests.map((interest) => (
-        <button
-          key={interest.name}
-          onClick={() => {
-            handleClick(interest.name);
-          }}
-        > {interest.name}
-        {/* <Link to="/group">{item.name}</Link>   */}
-        </button>
-      ))}
+    <div className="flex justify-content-space-between md:mx-6">
+      <div>
+        <h2 className= "font-[Poppins] font-bold text-black-500 text-xl mb-2 block mr-3">Choose By Interest</h2>
+        <div className="flex flex-wrap">
+          {interests.map((interest) => (
+          <ul className="mt-2.5">
+          <li
+          className="cursor-pointer font-[Poppins] mr-6 px-6 py-2 bg-cyan-600 rounded-full text-white hover:bg-cyan-900 duration-500"
+            key={interest.name}
+            onClick={() => {
+              handleClick(interest.name);
+            }}
+          > {interest.name}
+          {/* <Link to="/group">{item.name}</Link>   */}
+          </li>
+          </ul>
+        ))}
+      </div>
+      
+      </div>
+      
     </div>
   );
 }

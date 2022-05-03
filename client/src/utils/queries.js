@@ -7,6 +7,7 @@ export const QUERY_INTERESTS = gql`
       groups {
         name
         _id
+        image
         description
          posts {
         _id
@@ -16,8 +17,21 @@ export const QUERY_INTERESTS = gql`
       }
         members {
           _id
+          image
           username
         }
+      }
+    }
+  }
+`;
+export const QUERY_INTERESTS2 = gql`
+  query Interests {
+    interests {
+      name
+      groups {
+        name
+        _id
+        description
       }
     }
   }
@@ -29,6 +43,7 @@ export const QUERY_INTEREST = gql`
       groups {
         name
         description
+        image
         _id
       }
     }
@@ -39,10 +54,12 @@ export const QUERY_GROUPS = gql`
     getallgroups {
       _id
       name
+      image
       description
       members {
         _id
         username
+        image
       }
       posts {
         _id
@@ -60,9 +77,11 @@ export const QUERY_GROUP = gql`
       _id
       name
       description
+      image
       members {
         _id
         username
+        image
         posts {
           _id
           postText
@@ -85,6 +104,7 @@ export const QUERY_USER = gql`
     user(username: $username) {
       _id
       username
+      image
       posts {
         _id
         postText
@@ -105,6 +125,7 @@ export const QUERY_ME = gql`
     me {
       _id
       username
+      image
       email
       posts {
         _id
@@ -127,6 +148,7 @@ export const QUERY_ME_BASIC = gql`
       _id
       username
       email
+      image
     }
   }
 `;
