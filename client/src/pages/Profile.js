@@ -114,7 +114,7 @@ const Profile = () => {
             />
             <img
               className="rounded-full border border-white w-40 h-40 -mt-20 shadow-xl object-cover"
-              src={`${user.image}`.split('fakepath\\')}
+              src={`${user.image}`.split('C:\\fakepath\\')[1]}
               // src="https://source.unsplash.com/1600x900/?username"
               alt="user-pic"
               onError = {e => e.target.style.display = 'none'}
