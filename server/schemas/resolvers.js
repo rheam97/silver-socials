@@ -1,7 +1,9 @@
 const { Post, Interest, Group, User } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken, authMiddleware } = require("../utils/auth");
-const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const stripe = require('stripe')('pk_test_51KvL8kL5WnZOXfBKlXQ0QH6R9DwH76YfN2v5IpYMtc1JAIl4yNeK0R87YJpQfbMYf4IsmkEPteGi8f6f0NUAfjfr00lzGtFon5')
+//sk_test_51KvL8kL5WnZOXfBK0ds63MfAdFDdpOyF1r7pfUyh5aiMDUyEnO1TzUWdAEZfhooZTNpaYPHFB98y7C62NH8sSiqO00DCv9gQ9Z
+//pk_test_51KvL8kL5WnZOXfBKlXQ0QH6R9DwH76YfN2v5IpYMtc1JAIl4yNeK0R87YJpQfbMYf4IsmkEPteGi8f6f0NUAfjfr00lzGtFon5
 const resolvers = {
   // get me profile with groups
   //get groups under interest
@@ -73,6 +75,7 @@ const resolvers = {
         unit_amount: donationAmtDollars * 100,
         currency: "usd",
       });
+console.log(product.id);
 
       line_items.push({
         price: price.id,

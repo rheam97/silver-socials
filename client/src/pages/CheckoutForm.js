@@ -7,7 +7,7 @@ import {QUERY_CHECKOUT} from "../utils/queries"
 //import { Elements } from "@stripe/react-stripe-js";
 //import CardSection from "../pages/CardSection";
 //const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
-const stripePromise = loadStripe("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const stripePromise = loadStripe("pk_test_51KvL8kL5WnZOXfBKlXQ0QH6R9DwH76YfN2v5IpYMtc1JAIl4yNeK0R87YJpQfbMYf4IsmkEPteGi8f6f0NUAfjfr00lzGtFon5");
 //pk_test_TYooMQauvdEDq54NiTphI7jx
 //const stripe = useStripe();
 //const elements = useElements();
@@ -36,7 +36,7 @@ function CheckoutForm() {
   // }
 
   let handleSubmit = async (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     getCheckout({
       variables: { donationAmtDollars: 2.5 },
     });
@@ -60,7 +60,7 @@ function CheckoutForm() {
         <h3 className="product-title">Donations</h3>
         <h4 className="product-price">$2.50</h4>
       </div>
-      <button onClick={handleSubmit}></button>
+      <button onClick={handleSubmit}>Donate Now</button>
     </div>
   );
 }
