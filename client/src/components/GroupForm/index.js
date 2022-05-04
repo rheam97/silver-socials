@@ -88,6 +88,7 @@ const GroupForm = () => {
       setName("");
       setTextCharacterCount(0);
       setNameCharacterCount(0);
+      window.location.replace('/')
     } catch (e) {
       console.error(e);
     }

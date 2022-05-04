@@ -6,7 +6,7 @@ const fakePhoto = 'https://images.unsplash.com/photo-1580489944761-15a19d654956?
 const PostList = ({ posts }) => {
   return (
 
-            <div class="w-[70%] w-screen mt-12">
+            <div className="w-[70%] w-screen mt-12">
 
                 {posts &&
                   posts.map(post => (
