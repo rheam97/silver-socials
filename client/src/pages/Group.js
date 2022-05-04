@@ -4,14 +4,15 @@ import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
-
+import Button from '@mui/material/Button';
+import {JOIN_GROUP} from '../utils/mutations';
 import PostList from "../components/Post";
 import PostForm from "../components/PostForm";
 import Interest from "../components/InterestMenu";
 import GroupForm from "../components/GroupForm";
 import GroupItem from "../components/GroupItem";
 import Auth from "../utils/auth";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_GROUP } from "../utils/queries";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -25,7 +26,24 @@ const SingleGroup = (props) => {
     variables: { id: groupId },
   });
 
+  const [joinGroup, { error }] = useMutation(JOIN_GROUP, {
+  
+});
 
+  const joinAsMember = async() => {
+
+    try {
+      await joinGroup({
+        variables: { groupId: group._id },
+      });
+      console.log(group);
+    } catch (e) {
+      console.error(e);
+    }
+   
+ 
+  };
+  
 useEffect(()=> {
 if(group){
   const success =group.members.find(m=> m._id===Auth.getProfile().data._id)
@@ -33,7 +51,6 @@ if(group){
     setIsAuth(true)
   }
 }
-
 
 }, [group])
 
@@ -70,6 +87,8 @@ if (loading) {
     <div className= "flex flex-col justify-content-center items-center mt-20 w-screen">
         { isAuth ? <PostForm /> : <div className='bg-gray-100 rounded-lg p-6 shadow-xl w-[70%] font-[Poppins] text-center mx-auto'>
       <p>You must join the group to post in the group discussion</p>
+      <Button size="small" onClick={joinAsMember}><span className='font-[Poppins] text-cyan-600 hover:text-red-600'>Join this Group Now</span></Button>
+
     </div>}
         {<PostList posts={group.posts} />}
     </div>

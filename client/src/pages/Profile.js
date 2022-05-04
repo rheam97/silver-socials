@@ -110,7 +110,7 @@ const Profile = () => {
         <div>
           <div className="flex flex-col pb-5 justify-center items-center font-[Poppins]">
             <img
-              className="w-[70%] h-370 2xl:h-510 shadow-lg object-cover"
+              className="sm:w-[75%] h-370 2xl:h-510 shadow-lg object-cover"
               src="https://source.unsplash.com/1600x900/?nature,photography,technology"
               alt="cover-image"
             />
@@ -122,7 +122,7 @@ const Profile = () => {
               // src="https://source.unsplash.com/1600x900/?username"
             />
           </div>
-          <h1 className="font-bold text-3xl text-center mt-3">
+          <h1 className="font-[Poppins] font-medium text-4xl text-center mt-3 mb-3">
             {/* {user.userName} */}
             {user.username}
           </h1>
