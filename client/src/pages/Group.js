@@ -57,8 +57,8 @@ if(group){
 if (loading) {
   return <div>{spinner}Loading...</div>;
 }
-if (!loading) {
-  return <h3>You need to be logged in to see this!</h3>
+if (!Auth.loggedIn()) {
+  return (<h3>You need to be logged in to see this!</h3>)
 }
  
   return (
