@@ -39,9 +39,7 @@ const Home = () => {
       </div>
 
       <Container maxWidth="lg" className="mt-10 flex-row flex-wrap justify-space-between w-[70%] mx-8">
-      {/* <AppBar position="static" color="inherit"> */}
-      {/* </AppBar> */}
-      {/* <Grow in> */}
+      
         <Container>
           <Grid container justify="space-between" alignItems="stretch" spacing={3}>
             <Grid item xs={12} sm={7}>
@@ -52,7 +50,6 @@ const Home = () => {
             </Grid>
           </Grid>
         </Container>
-      {/* </Grow> */}
     </Container>
       {/* <div className="mt-10 flex-row justify-space-between w-[70%] mx-auto">
           <div className="col-12 mb-3">

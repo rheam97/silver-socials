@@ -89,7 +89,10 @@ function GroupList() {
           )}
         </div>
       ) : (
+        <div className='bg-gray-100 rounded-lg p-6 shadow-xl w-[70%] font-[Poppins] text-center mx-auto'>
         <h3>No groups added under this interest yet!</h3>
+        </div>  
+
       )}
       {loading ? <img src={spinner} alt="loading" /> : null}
     </div>

@@ -48,7 +48,7 @@ const Signup = () => {
   return (
     <>
       <div className="form-container" style={{ height: "100vh" }}>
-        <div className="form-content-left">
+        <div className="form-content-left duration-500">
           <img
             src={silversociallogo}
             alt="silver-socials-logo"
