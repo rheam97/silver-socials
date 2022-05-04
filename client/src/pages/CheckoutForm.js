@@ -1,19 +1,13 @@
-import React, {useEffect} from "react";
-//import { Elements, CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import React, { useEffect } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { loadStripe } from "@stripe/stripe-js";
-
 import { useLazyQuery } from "@apollo/client";
-import {QUERY_CHECKOUT} from "../utils/queries"
-//import { Elements } from "@stripe/react-stripe-js";
-//import CardSection from "../pages/CardSection";
-//const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
-const stripePromise = loadStripe("pk_test_51KvRkLEDHZQbCChzQC1hHfBg735yXRg7427DE09OGe3HfMaHBdtAKif7LCIX9nFoQPziBLx1ZWy4hQonNTNYjKuY00Acd9p2VE");
-//pk_test_51KvRkLEDHZQbCChzQC1hHfBg735yXRg7427DE09OGe3HfMaHBdtAKif7LCIX9nFoQPziBLx1ZWy4hQonNTNYjKuY00Acd9p2VE
-//pk_test_TYooMQauvdEDq54NiTphI7jx
-//const stripe = useStripe();
-//const elements = useElements();
-
-
+import { QUERY_CHECKOUT } from "../utils/queries";
+import { Table } from "@mui/material";
+const stripePromise = loadStripe(
+  "pk_test_51KvRkLEDHZQbCChzQC1hHfBg735yXRg7427DE09OGe3HfMaHBdtAKif7LCIX9nFoQPziBLx1ZWy4hQonNTNYjKuY00Acd9p2VE"
+);
 
 function CheckoutForm() {
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
@@ -26,61 +20,38 @@ function CheckoutForm() {
     }
   }, [data]);
 
-  
-  // function submitCheckout() {
-  //   const productIds = [];
-
-  //   state.cart.forEach((item) => {
-  //     for (let i = 0; i < item.purchaseQuantity; i++) {
-  //       productIds.push(item._id);
-  //     }
-  //   });
-
-  // }
-
   let handleSubmit = async (event) => {
     //event.preventDefault();
     getCheckout({
-      variables: { donationAmtDollars: 10.00 },
+      variables: { donationAmtDollars: 10.0 },
     });
-    // const { stripe, elements } = this.props;
-    // if (!stripe || !elements) {
-    //   return;
-    // }
-
-    //const card = elements.getElement(CardElement);
-    //const result = await stripe.createToken(card);
-    // if (result.error) {
-    //   console.log(result.error.message);
-    // } else {
-    //   console.log(result.token);
-    // }
   };
 
   return (
-    <div>
-      <div className="product-info">
-        <h3 className="product-title">Donations</h3>
-        <h4 className="product-price">$10.00</h4>
+    <main>
+      <Header />
+
+      <div
+        maxWidth="lg"
+        className="mt-10 flex-row flex-wrap justify-space-between mx-8"
+      >
+        <div className="product-info">
+          <div className="text-xl">
+          <h1 className="product-title">We Appreciate Any Donation Amount.  Thank You For Keeping Silver Socials Active and Social.</h1>
+          </div>
+          <br></br>
+          <h4 className="product-price"></h4>
+          <div className='flex flex-col my-4 mb-8'>
+          <div className="text-center text-xl px-2 py-3 rounded-full duration-500 text-white bg-cyan-600 hover:bg-cyan-900 ">
+            <button onClick={handleSubmit}>Donate Now</button>
+          </div>
+          </div>
+        </div>
       </div>
-      <button onClick={handleSubmit}>Donate Now</button>
-  
 
-    </div>
-
-
-
-
+      <Footer />
+    </main>
   );
 }
 
 export default CheckoutForm;
-// export default function InjectedCheckoutForm() {
-//   return (
-//     <Elements>
-//       {({ stripe, elements }) => (
-//         <CheckoutForm stripe={stripe} elements={elements} />
-//       )}
-//     </Elements>
-//   );
-//}
