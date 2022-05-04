@@ -163,7 +163,7 @@ const Login = (props) => {
               render={(renderProps) => (
                 <button
                   type="button"
-                  className="bg-mainColor flex justify-center text-center items-center p-3 rounded-lg cursor-pointer outline-none"
+                  className="m-auto bg-mainColor flex justify-center text-center items-center p-3 rounded-lg cursor-pointer outline-none"
                   onClick={renderProps.onClick}
                   disabled={renderProps.disabled}
                   // style={{width:'100%', border:'2px solid lightgrey', color:'grey', background:'white'}}

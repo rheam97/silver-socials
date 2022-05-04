@@ -9,7 +9,7 @@ const About = () => {
 return (
     <main className="absolute">
         <Header />
-        <div className='w-full h-full flex flex-col items-center justify-between mx-auto font-[Poppins]'>
+        <div className='w-full h-full flex flex-col items-center justify-between mx-auto font-[Poppins] lg:h-screen'>
         <div className='grid md:grid-cols-2 max-w-[1240px] m-auto pt-10'>
             <div className='flex flex-col justify-center md:items-start w-full px-12 py-12 font-[Poppins]'>
                 <h1 className='py-3 text-5xl sm:text-7xl font-bold'>Welcome to</h1>

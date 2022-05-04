@@ -44,11 +44,12 @@ const Signup = () => {
     setErrors(validate(formState));
   };
 
+
   // from material ui
   return (
     <>
       <div className="form-container" style={{ height: "100vh" }}>
-        <div className="form-content-left duration-500">
+        <div className="form-content-left">
           <img
             src={silversociallogo}
             alt="silver-socials-logo"
@@ -62,7 +63,17 @@ const Signup = () => {
             <div className="form-inputs">
               {/* <---file input label to upload profile pic---> */}
               <label className="form-label" htmlFor="image">Select an image:</label>
-              <input onChange={handleChange} value={formState.image} className="form-input" type="file" id="image" name="image" />
+              <input 
+              onChange={handleChange} 
+              value={formState.image} 
+              className="!block !w-full !text-sm !text-slate-500
+            !file:mr-4 !file:py-2 !file:px-4
+            !file:rounded-full !file:border-1
+            !file:text-sm !file:font-semibold
+            !file:border-cyan-600 !file:text-black
+            !hover:file:bg-cyan-600 !hover:file:text-white" 
+              type="file" id="image" 
+              name="image" />
               <label className="form-label">Username</label>
               <input
                 className="form-input"

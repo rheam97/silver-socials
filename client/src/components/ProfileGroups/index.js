@@ -15,7 +15,19 @@ const GroupList = ({ groups, title }) => {
     // const loggedIn = Auth.loggedIn();
 
     if (!groups.length) {
-        return <div className='bg-gray-100 rounded-lg p-6 shadow-xl w-[70%] font-[Poppins] text-center mx-auto'><h3>No Groups Joined Yet!</h3></div>;
+        return (
+            <>
+                <div className='bg-gray-100 rounded-lg p-6 shadow-xl w-[70%] font-[Poppins] text-center mx-auto'>
+                <h3>No Groups Joined Yet!</h3>
+                <p>Please revisit the home page to join group or click me below!</p>
+                </div>
+                <div>
+                <Link to='/'>
+                <button className="mt-4 animate-bounce px-3 py-3 text-white rounded-full bg-cyan-600">click me!</button>
+                </Link>
+                </div>
+             </>
+        )
     }
 
     return (
