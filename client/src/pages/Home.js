@@ -34,12 +34,14 @@ const Home = () => {
       <Header />
       <Hero />
       {/* <HomeProvider> */}
-      <div maxWidth="lg" className="mt-10 flex-row flex-wrap justify-space-between mx-8">
+      {/* <div maxWidth="lg" className="mt-10 flex-row flex-wrap justify-space-between mx-8">
           <InterestMenu />
-      </div>
+      </div> */}
 
       <Container maxWidth="lg" className="mt-10 flex-row flex-wrap justify-space-between w-[70%] mx-8">
-      
+      <div maxWidth="lg" className="mt-10 flex-row flex-wrap justify-space-between mb-10 ml-4 md:ml-0">
+          <InterestMenu />
+      </div>
         <Container>
           <Grid container justify="space-between" alignItems="stretch" spacing={3}>
             <Grid item xs={12} sm={7}>
