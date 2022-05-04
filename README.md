@@ -1,40 +1,40 @@
-# Silver Socials
 
-## Table of Contents
+  # Silver Socials
 
--[Description](#Description)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
--[Repository](#Repository)
+  # Table of Contents
+  * [Project Description](#description)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Licensing](#license)
+  * [Questions](#questions)
+  
+  <a name="description"></a>
+  ## Description
+  A MERN-Stack social network app for people 55+ to socialize. Uses GraphQl to query the server, JWT Authentication, Faker.js, Stripe, and SASS, Material UI, Tailwind CSS, Figma, and Heroicon for the UX Design.
 
--[Webpage](#Webpage)
+  Deployed: https://silver-socials.herokuapp.com/
 
--[Installation](#Installation)
+  <a name="install"></a>
+  ## Installation
+  Clone the repo. Run 'npm i' in the root of the project.
 
--[Usage](#Usage)
+  <a name="usage"></a>
+  ## Usage
+  Users can sign up, join groups, and post in those groups when joined. Users can also filter for groups by interests. Users can make donations to the app development using Stripe. Users can also run the app locally after installation using 'npm run develop' to run concurrent servers.
 
--[Contribution](#Contributing)
+  Here is how the app looks: 
+  ![homepage](homepagess.png)
 
-## Description
+  <a name="license"></a>
+  ## Licensing
+  This app is licensed under MIT. For more information, click on the badge link above.
 
-This project is a MERN Full-Stack Application that allows users to create accounts and join social groups.
-The technologies used are: MongoDB and Mongoose ODM, Express.js, React, Node.js, GraphQL and concurrent servers, JWT Authentication
+  <a name="questions"></a>
+  ## Questions
+  You can find more of the original contributors' work at [rheam97](https://github.com/rheam97), [rdenton3](https://github.com/rdenton3), [Maryjezek](https://github.com/Maryjezek), and [NFoithong](https://github.com/NFoithong) on GitHub and contact me with any questions
+  at rheam97@gmail.com.
 
-## Repository
 
-https://github.com/rheam97/silver-socials
 
-## Webpage
-
-https://silver-socials.herokuapp.com/
-
-## Installation
-
-You will first need to install the required dependencies by running `npm install`.
-
-## Usage
-
-You can use the following command to run this application: `npm run develop`
-
-## Contributing
-
-Feel free to contribute to this project. We welcome any contributions.
