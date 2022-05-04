@@ -22,7 +22,7 @@
 
   <a name="usage"></a>
   ## Usage
-  Users can sign up, join groups, and post in those groups when joined. Users can also filter for groups by interests. Users can make donations to the app development using Stripe. Users can also run the app locally after installation using 'npm run develop' to run concurrent servers.
+  Users can sign up, join groups, create groups, and post in those groups when joined. Users can also filter for groups by interests. Users can make donations to the app development using Stripe. Users can also run the app locally after installation using 'npm run develop' to run concurrent servers.
 
   Here is how the app looks: 
   ![homepage](homepagess.png)
