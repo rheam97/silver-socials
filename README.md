@@ -14,7 +14,7 @@
   ## Description
   A MERN-Stack social network app for people 55+ to socialize. Uses GraphQl to query the server, JWT Authentication, Faker.js, Stripe, and SASS, Material UI, Tailwind CSS, Figma, and Heroicon for the UX Design.
 
-  Deployed: https://silver-socials.herokuapp.com/
+  Deployed: **UPDATE: in the midst of redploying due to 1) the beginning of heroku subscriptions and 2) trying to migrate to NextJS.
 
   <a name="install"></a>
   ## Installation
